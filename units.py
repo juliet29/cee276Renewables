@@ -21,10 +21,15 @@ kg = ureg.kilogram
 # force
 newton = ureg.newton
 
-# energy
+# energy and power
 mj = ureg.megajoule
 j = ureg.joule
 kwh = ureg.kilowatt*ureg.hour
+mwh = ureg.megawatt*ureg.hour
+
+watt = ureg.watt
+
+
 
 # temperature 
 natural_temp = Q_(15, ureg.degC)
