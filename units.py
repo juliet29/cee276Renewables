@@ -29,7 +29,10 @@ mwh = ureg.megawatt*ureg.hour
 
 watt = ureg.watt
 
-
+# electricity 
+ohm = ureg.ohm 
+amp = ureg.ampere
+volt = ureg.volt
 
 # temperature 
 natural_temp = Q_(15, ureg.degC)
