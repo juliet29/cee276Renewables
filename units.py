@@ -27,7 +27,9 @@ j = ureg.joule
 kwh = ureg.kilowatt*ureg.hour
 mwh = ureg.megawatt*ureg.hour
 
+
 watt = ureg.watt
+megawatt = ureg.megawatt
 
 # electricity 
 ohm = ureg.ohm 

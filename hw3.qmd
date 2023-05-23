@@ -1,0 +1,196 @@
+---
+title: "Renewables Homework 3"
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+```{python}
+
+import numpy as np
+import units as u
+import numpy as np
+from IPython.display import display, Markdown, Latex
+
+# help: https://quarto.org/docs/computations/execution-options.html#inline-code
+
+```
+
+# Chapter 6 
+
+## 6.2. 
+***Under which, if either, condition is the lift-to-drag ratio of a wind turbine airfoil higher? At 10 m height where the air density is 1.23 kg/m3 and the wind speed is 5 m/s, or at 100 m height, where the air density is 1.21 kg/m3 and the wind speed is 9 m/s?*** 
+
+***Also, under which condition is the lift greater? Assume the blade length is 60 m, the blade width is an average of 1 m, the drag coefficient is 0.01, and the lift coefficient is 1.0.*** 
+
+```{python}
+
+def calc_lift_or_drag(C, rho, v, Af,):
+    return C*rho*Af*v
+
+
+C_lift = 1
+C_drag = 0.01 
+
+rho_a = 1.23 * u.kg / u.m**3
+v_a = 5 * u.m/ u.s
+
+rho_b = 1.21 * u.kg / u.m**3
+v_b = 8 * u.m/ u.s
+
+blade_area = 60 * u.m * 1 * u.m 
+
+
+lift_a = calc_lift_or_drag(C=C_lift, rho=rho_a, v=v_a, Af=blade_area)
+lift_b = calc_lift_or_drag(C=C_lift, rho=rho_b, v=v_b, Af=blade_area)
+
+drag_a = calc_lift_or_drag(C=C_drag, rho=rho_a, v=v_a, Af=blade_area)
+drag_b = calc_lift_or_drag(C=C_drag, rho=rho_a, v=v_a, Af=blade_area)
+
+display(Markdown(f"""
+For case A, the lift-to-drag ratio is {lift_a/drag_a:P~}, while for case B it is {np.round(lift_b/drag_b,0):P~}. Case B has the higher ratio. 
+
+In case A, the lift is {lift_a:P~}, but in case B it is {lift_b:P~}. Case B has the greater lift. 
+"""))
+```
+
+
+## 6.4. 
+***If a wind turbine’s blade diameter is 100 m, calculate the kinetic energy passing through the blade’s swept area over 1 hour if the wind speed is 10 m/s. Assume the air density is 1.21 kg/m3. Also determine the power in the wind.***
+
+```{python}
+
+Dt = 100 * u.m
+t = 1 * u.hour 
+v = 10 * u.m / u.s 
+rho = 1.21 * u.kg / u.m**3
+
+x = v * t 
+At = np.pi * (0.5*Dt)**2 # A = pi * r^2 
+Ma = rho * At * x 
+
+KE = 0.5 * Ma * v**2
+
+P = 0.5 * rho * At * v**3
+
+
+display(Markdown(f"""
+The kinetic energy is {KE.to("megajoules"):.2E~P}, and the power in the wind is {P.to("kilowatt"):.2E~P}.
+"""))
+
+
+```
+
+
+## 6.5. 
+***If the wind speed at 100 m height above the ground is 8 m/s and that at 10 m height is 5 m/s, calculate the power law coefficient for this profile. Using the coefficient, estimate the wind speed at 200 m above the ground.*** 
+```{python}
+# hello whats up 
+v100 = 8 * u.m / u.s 
+h100 = 100 * u.m 
+
+v10 = 5 * u.m / u.s 
+h10 = 10 * u.m 
+
+# v100 = v10 * (h100/h10)^alpha 
+# log10(v100/v10) = log10((h100/h10)^alpha) -->  h100/h10 = 10 
+# log10(v100/v10) = log10((10)^alpha)
+# log10(v100/v10) = alpha
+
+alpha = np.log10(v100/v10)
+
+h200 = 200 * u.m
+v200 = v10 * (h200/h10)**alpha
+
+display(Markdown(f"""
+Alpha is  {alpha:.2f~P}, and the wind speed at {h200:.0f~P} is {v200:.2f~P}.
+"""))
+
+```
+
+
+## 6.9. 
+***Using the empirical capacity factor equation, estimate the capacity factors of a 5-MW turbine with a 126-m blade diameter and of a 1.5-MW turbine with a 77-m blade diameter when the mean wind speed (assuming a Rayleigh distribution) is 8 m/s in both cases. What is the annual energy output in both cases (assuming a non-leap year)?*** 
+```{python}
+
+# no units, equation is not empirical
+Vm = 8 # * u.m / u.s
+st_year_hours = 8760 # * u.hour
+# turbineA = {"Pr": 5000 * u.kilowatt, "D": 126 * u.m}
+# turbineB = {"Pr": 1500 * u.kilowatt, "D": 77 * u.m}
+
+turbineA = {"Pr": 5000 , "D": 126 }
+turbineB = {"Pr": 1500, "D": 77 }
+
+def calc_CF_and_energy(t, Vm=Vm, hours=st_year_hours):
+    CF = 0.087 * Vm - (t["Pr"]/ t["D"]**2)
+    Et = t["Pr"] * CF * hours * u.j
+    return CF, Et.to("megajoule")
+
+A = calc_CF_and_energy(turbineA)
+B = calc_CF_and_energy(turbineB)
+
+
+display(Markdown(f"""
+For the 5-MW turbine, the capacity factor is   {A[0]:.2f}, and the annual energy output is  {A[1]:.0f~P}.
+
+For the 1.5-MW turbine, the capacity factor is   {B[0]:.2f}, and the annual energy output is  {B[1]:.0f~P}.
+"""))
+
+```
+
+## 6.11. 
+***Calculate the reduction in electricity generation that is possible in Haiti, without reducing end-use electricity availability, if the transmission and distribution loss is reduced by 5 percentage points from its 2014 value.*** 
+
+```{python}
+
+del_Ltd = 5 # percentage 
+Ltd = 60.1
+del_Gelec = (100 * del_Ltd )/(100 - Ltd + del_Ltd)
+
+display(Markdown(f"""
+Haiti can reduce electricity generation by {del_Gelec:.2f}%  by reducing its transmission and distribution losses.
+"""))
+
+
+```
+
+## 6.14. 
+***Explain the difference between footprint and spacing of an energy technology. What are some of the uses of the spacing?*** 
+
+The footprint is the physical area on the topsoil or water that is touched by an energy technology. Spacing is the area that is essentially "in between" the energy technologies. For instance, wind turbines require a certain spacing for optimal energy production and to prevent harm to the surrounding locations and each other. Spacing can be used for agriculture, other energy technologies like solar arrays, or can exist as forests/open space. 
+
+## 6.16. 
+***How many 5-MW onshore wind turbines with a rotor diameter of 126 m operating in a mean annual wind speed of 7.5 m/s are needed to power the U.S. on-road vehicle fleet consisting of battery-electric (BE) vehicles if the end-use energy required to run such a fleet is Ev = 1.15 × 1012 kWh/y (2017) and the plug-to-wheel efficiency of an electric vehicle is ηe = 0.85? Assume the system efficiency of each wind turbine is ηt = 0.9. Hint: First determine the total electrical energy required to run the fleet by dividing the end-use energy required to run vehicles by the plug-to-wheel efficiency.*** 
+
+```{python}
+
+Ev = 1.15e12 * u.kwh / u.year # end use energy of battery electric vehicle fleet 
+eta_e = 0.85 # plug-to-wheel efficiency of an electric vehicle
+
+Ev_total = (Ev/eta_e).to("megawatt * hour / year") * u.year
+
+# See function definitions in problem 6.9. The turbine described here has the same characteristics of turbine A in that problekm => 5-MW and 126m diameter 
+Vm2 = 7.5 # u.m / u.s
+CF, Et = calc_CF_and_energy(turbineA, Vm=Vm2)
+
+eta_t = 0.9 # turbine efficiency 
+Et_available = Et * eta_t 
+
+#  change MWh of vehicle fleet to megajoules..
+Ev_total_joules = (Ev_total).to("megajoule")
+
+
+
+n_turbines = Ev_total_joules / Et_available 
+
+display(Markdown(f"""
+Accounting for the plug-to-wheel efficiency of an electric vehicle, the total energy needed to run the fleet will be {Ev_total:.2E~P} per year, or {Ev_total_joules:.2E~P}.
+"""))
+
+display(Markdown(f"""
+After accounting for the system efficiency of each turbine, the energy that will be availabe from each will be {Et_available:.2E~P} per year. Dividing the total annual energy need of the electric vehicle fleet by the energy available from each turbine yields the number of turbines that will be needed: {n_turbines:.2E~P}.
+"""))
+
+```
