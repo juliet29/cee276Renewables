@@ -245,7 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># no units, equation is not empirical</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Vm <span class="op">=</span> <span class="dv">8</span> <span class="co"># * u.m / u.s</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>st_year_hours <span class="op">=</span> <span class="dv">8760</span> <span class="co"># * u.hour</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>st_year_hours <span class="op">=</span> <span class="dv">8760</span> <span class="co"># * u.hour, standard year hours </span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># turbineA = {"Pr": 5000 * u.kilowatt, "D": 126 * u.m}</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># turbineB = {"Pr": 1500 * u.kilowatt, "D": 77 * u.m}</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -279,29 +279,174 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-execution_count="6">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># empty block </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>del_Ltd <span class="op">=</span> <span class="dv">5</span> <span class="co"># percentage </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Ltd <span class="op">=</span> <span class="fl">60.1</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>del_Gelec <span class="op">=</span> (<span class="dv">100</span> <span class="op">*</span> del_Ltd )<span class="op">/</span>(<span class="dv">100</span> <span class="op">-</span> Ltd <span class="op">+</span> del_Ltd)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"""</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ss">Haiti can reduce electricity generation by </span><span class="sc">{</span>del_Gelec<span class="sc">:.2f}</span><span class="ss">%  by reducing its transmission and distribution losses.</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<p>Haiti can reduce electricity generation by 11.14% by reducing its transmission and distribution losses.</p>
+</div>
 </div>
 </section>
 <section id="section-5" class="level2">
 <h2 class="anchored" data-anchor-id="section-5">6.14.</h2>
 <p><strong><em>Explain the difference between footprint and spacing of an energy technology. What are some of the uses of the spacing?</em></strong></p>
-<div class="cell" data-execution_count="7">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># empty block </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
+<p>The footprint is the physical area on the topsoil or water that is touched by an energy technology. Spacing is the area that is essentially “in between” the energy technologies. For instance, wind turbines require a certain spacing for optimal energy production and to prevent harm to the surrounding locations and each other. Spacing can be used for agriculture, other energy technologies like solar arrays, or can exist as forests/open space.</p>
 </section>
 <section id="section-6" class="level2">
 <h2 class="anchored" data-anchor-id="section-6">6.16.</h2>
 <p><strong><em>How many 5-MW onshore wind turbines with a rotor diameter of 126 m operating in a mean annual wind speed of 7.5 m/s are needed to power the U.S. on-road vehicle fleet consisting of battery-electric (BE) vehicles if the end-use energy required to run such a fleet is Ev = 1.15 × 1012 kWh/y (2017) and the plug-to-wheel efficiency of an electric vehicle is ηe = 0.85? Assume the system efficiency of each wind turbine is ηt = 0.9. Hint: First determine the total electrical energy required to run the fleet by dividing the end-use energy required to run vehicles by the plug-to-wheel efficiency.</em></strong></p>
+<div class="cell" data-execution_count="7">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- electric vehicle fleet </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Ev <span class="op">=</span> <span class="fl">1.15e12</span> <span class="op">*</span> u.kwh <span class="op">/</span> u.year <span class="co"># end use energy of battery electric vehicle fleet </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>eta_e <span class="op">=</span> <span class="fl">0.85</span> <span class="co"># plug-to-wheel efficiency of an electric vehicle</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>Ev_total <span class="op">=</span> (Ev<span class="op">/</span>eta_e).to(<span class="st">"megawatt * hour / year"</span>) <span class="op">*</span> u.year</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>Ev_total_joules <span class="op">=</span> (Ev_total).to(<span class="st">"megajoule"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># -- wind turbines </span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># See function definition in problem 6.9. The turbine described here has the same characteristics of turbine A in that problekm =&gt; 5-MW and 126m diameter </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>Vm2 <span class="op">=</span> <span class="fl">7.5</span> <span class="co"># u.m / u.s</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>CF, Et <span class="op">=</span> calc_CF_and_energy(turbineA, Vm<span class="op">=</span>Vm2)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>eta_t <span class="op">=</span> <span class="fl">0.9</span> <span class="co"># turbine efficiency </span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>Et_available <span class="op">=</span> Et <span class="op">*</span> eta_t </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>n_turbines <span class="op">=</span> Ev_total_joules <span class="op">/</span> Et_available </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"""</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="ss">Accounting for the plug-to-wheel efficiency of an electric vehicle, the total energy needed to run the fleet will be </span><span class="sc">{</span>Ev_total<span class="sc">:</span><span class="fl">.2</span><span class="er">E</span><span class="op">~</span>P<span class="sc">}</span><span class="ss"> per year, or </span><span class="sc">{</span>Ev_total_joules<span class="sc">:</span><span class="fl">.2</span><span class="er">E</span><span class="op">~</span>P<span class="sc">}</span><span class="ss">.</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"""</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="ss">After accounting for the system efficiency of each turbine, the energy that will be availabe from each will be </span><span class="sc">{</span>Et_available<span class="sc">:</span><span class="fl">.2</span><span class="er">E</span><span class="op">~</span>P<span class="sc">}</span><span class="ss"> per year. Dividing the total annual energy need of the electric vehicle fleet by the energy available from each turbine yields the number of turbines that will be needed: </span><span class="sc">{</span>n_turbines<span class="sc">:</span><span class="fl">.2</span><span class="er">E</span><span class="op">~</span>P<span class="sc">}</span><span class="ss">.</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p>Accounting for the plug-to-wheel efficiency of an electric vehicle, the total energy needed to run the fleet will be 1.35E+09 MW·h per year, or 4.87E+12 MJ.</p>
+</div>
+<div class="cell-output cell-output-display">
+<p>After accounting for the system efficiency of each turbine, the energy that will be availabe from each will be 1.33E+01 MJ per year. Dividing the total annual energy need of the electric vehicle fleet by the energy available from each turbine yields the number of turbines that will be needed: 3.66E+11.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="chapter-7" class="level1">
+<h1>Chapter 7</h1>
+<section id="section-7" class="level2">
+<h2 class="anchored" data-anchor-id="section-7">7.1.</h2>
+<p><strong><em>Explain the difference between primary energy and end-use energy.</em></strong></p>
+<p>Primary energy is the energy released by breaking chemical bonds in raw fuels, or the solar/wind/geothermal that is naturally available as renewable energy. End-use energy is the energy consumed by various applications after primary energy has been converted, transmitted, and distribution losses have been accounted for.</p>
+</section>
+<section id="section-8" class="level2">
+<h2 class="anchored" data-anchor-id="section-8">7.4.</h2>
+<p><strong><em>Identify four ways that electrifying all energy and providing the electricity with 100 percent wind, water, and solar reduces end-use power demand. </em></strong></p>
+<ol type="1">
+<li>Electric vehicles are more efficient than combustion vehicles, so they need less energy to run.</li>
+<li>In producing high temperature heat in industiral settings, electric appliances are also far more efficient than current combustion-based techniques, which decreases the end use demand.</li>
+<li>End use demand is also decreased by using heat-pumps, which rely on heat transfer to create comforable infoor temperatures, rather than generating heat from fuel.</li>
+<li>Using renewable sources eliminates the need for energy to mine, transport and process fossil fuels, which decreases end-use demand</li>
+</ol>
+</section>
+<section id="section-9" class="level2">
+<h2 class="anchored" data-anchor-id="section-9">7.10.</h2>
+<p><strong><em>If a wind farm produces $50,000/y in annual revenue for 30 years, what is the present value of that income, assuming a private discount rate of 4 percent? </em></strong></p>
 <div class="cell" data-execution_count="8">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># empty block </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># present_val = future_val * (1/(1+r)^n)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>future_val <span class="op">=</span> <span class="dv">50_000</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">30</span> <span class="co"># number of periods </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">0.04</span> <span class="co"># discount rate </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>present_val <span class="op">=</span> future_val <span class="op">*</span> (<span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>r)<span class="op">**</span>n)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"""</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ss">The present value of the income is  $</span><span class="sc">{</span>present_val<span class="sc">:.0f}</span><span class="ss">.</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<p>The present value of the income is $15416.</p>
 </div>
+</div>
+</section>
+<section id="section-10" class="level2">
+<h2 class="anchored" data-anchor-id="section-10">7.11.</h2>
+<p><strong><em>Estimate the cost per unit energy of a Pr = 5 MW nameplate capacity wind turbine with a capital cost of $1,200/kW, a capacity factor of CF = 34 percent, an O&amp;M cost of $30/kW-y, and a lifetime of 30 years. Assume the discount rate is 3.5 percent, the construction time is 2 years, and the decommissioning cost is $13/kW. Also assume transmission, distribution, downtime, and array losses are 10 percent. Hint: Construct a table like Table 7.9. </em></strong></p>
+<div class="cell" data-execution_count="9">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Pr <span class="op">=</span> <span class="dv">5000</span> <span class="co"># kw -&gt; nameplate capacity </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>P_capital <span class="op">=</span> <span class="dv">1200</span> <span class="co"># $/kw -&gt; capital cost </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>CF <span class="op">=</span> <span class="dv">30</span><span class="op">/</span><span class="dv">100</span> <span class="co"># percent -&gt; capacity factor </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>OandM <span class="op">=</span> <span class="dv">10</span> <span class="co"># $/kW/year -&gt; O+M cost </span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">3</span><span class="op">/</span><span class="dv">100</span> <span class="co"># percent -&gt;  private discount rate</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>T_construct <span class="op">=</span> <span class="dv">1</span> <span class="co"># year -&gt; construction time </span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="dv">10</span> <span class="co"># $/kW -&gt; decomissioning cost </span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>losses <span class="op">=</span> <span class="dv">10</span><span class="op">/</span><span class="dv">100</span> <span class="co"># percent -&gt; transmission, dist, and downtime losses </span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>T_life <span class="op">=</span> <span class="dv">30</span> <span class="co"># project lifetime </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>T_life_arr <span class="op">=</span> np.arange(<span class="dv">1</span>, T_life<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>i_factor <span class="op">=</span> (<span class="dv">1</span> <span class="op">+</span> i )<span class="op">**</span>(T_life_arr)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>CRF <span class="op">=</span>( i <span class="op">*</span> i_factor ) <span class="op">/</span> (i_factor  <span class="op">-</span> <span class="dv">1</span> )</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># print(CRF, T_life_arr, len(CRF))</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># energy available per year </span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>Et <span class="op">=</span> Pr <span class="op">*</span> CF <span class="op">*</span> st_year_hours <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> losses)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># presnet value of energy </span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>Et_present <span class="op">=</span> Et<span class="op">/</span>i_factor</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># costs</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>A_capital <span class="op">=</span> P_capital <span class="op">*</span> CRF</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>A_decom <span class="op">=</span> (F<span class="op">/</span>i_factor)<span class="op">*</span>CRF</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>OM_cost <span class="op">=</span> [<span class="dv">0</span>] <span class="op">+</span> [OandM<span class="op">*</span> Pr]<span class="op">*</span>(T_life <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>costs <span class="op">=</span> A_capital <span class="op">+</span> A_decom <span class="op">+</span> OM_cost</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>LCOE <span class="op">=</span> (np.<span class="bu">sum</span>(costs<span class="op">/</span>i_factor))<span class="op">/</span>(np.<span class="bu">sum</span>(Et_present<span class="op">/</span>i_factor))</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"""</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="ss">The levelized cost of energy is   $</span><span class="sc">{</span>LCOE<span class="sc">:.3f}</span><span class="ss">.</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="co"># print(CRF, Et, LCOE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p>The levelized cost of energy is $0.006.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="chapter-8" class="level1">
+<h1>Chapter 8</h1>
+<section id="section-11" class="level2">
+<h2 class="anchored" data-anchor-id="section-11">8.4.</h2>
+<p><strong><em>List four methods of changing the electric power system when instantaneous electric power generation plus storage cannot meet instantaneous demand during some times of the year.</em></strong></p>
+<ol type="1">
+<li>Over-generation of energy</li>
+<li>Energy storage</li>
+<li>A highly interconnected grid enabling long-distance transmission</li>
+<li>Demand-response</li>
+</ol>
+</section>
+<section id="section-12" class="level2">
+<h2 class="anchored" data-anchor-id="section-12">8.6.</h2>
+<p><strong><em>Why should bundling of wind, solar, geothermal, and hydroelectric power significantly help to match power demand on the grid with power supply?</em></strong></p>
+<p>Hydroelectic</p>
+</section>
+<section id="section-13" class="level2">
+<h2 class="anchored" data-anchor-id="section-13">8.7.</h2>
+<p><strong><em>Calculate the number of heating degree days and cooling degree days over a four-day period relative to a reference temperature of 18 oC if the outdoor air temperatures on each day are –5 oC, 0 oC, 30 oC, and 35 oC, respectively. </em></strong></p>
+</section>
+<section id="section-14" class="level2">
+<h2 class="anchored" data-anchor-id="section-14">8.10.</h2>
+<p><strong><em>What WWS technologies can be used to perform regulation services?</em></strong></p>
 </section>
 </section>
 

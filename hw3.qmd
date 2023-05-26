@@ -115,11 +115,12 @@ Alpha is  {alpha:.2f~P}, and the wind speed at {h200:.0f~P} is {v200:.2f~P}.
 ```{python}
 
 # no units, equation is not empirical
+
 Vm = 8 # * u.m / u.s
-st_year_hours = 8760 # * u.hour
+st_year_hours = 8760 # * u.hour, standard year hours 
+
 # turbineA = {"Pr": 5000 * u.kilowatt, "D": 126 * u.m}
 # turbineB = {"Pr": 1500 * u.kilowatt, "D": 77 * u.m}
-
 turbineA = {"Pr": 5000 , "D": 126 }
 turbineB = {"Pr": 1500, "D": 77 }
 
@@ -166,22 +167,20 @@ The footprint is the physical area on the topsoil or water that is touched by an
 
 ```{python}
 
+# --- electric vehicle fleet 
 Ev = 1.15e12 * u.kwh / u.year # end use energy of battery electric vehicle fleet 
 eta_e = 0.85 # plug-to-wheel efficiency of an electric vehicle
 
 Ev_total = (Ev/eta_e).to("megawatt * hour / year") * u.year
+Ev_total_joules = (Ev_total).to("megajoule")
 
-# See function definitions in problem 6.9. The turbine described here has the same characteristics of turbine A in that problekm => 5-MW and 126m diameter 
+# -- wind turbines 
+# See function definition in problem 6.9. The turbine described here has the same characteristics of turbine A in that problekm => 5-MW and 126m diameter 
 Vm2 = 7.5 # u.m / u.s
 CF, Et = calc_CF_and_energy(turbineA, Vm=Vm2)
 
 eta_t = 0.9 # turbine efficiency 
 Et_available = Et * eta_t 
-
-#  change MWh of vehicle fleet to megajoules..
-Ev_total_joules = (Ev_total).to("megajoule")
-
-
 
 n_turbines = Ev_total_joules / Et_available 
 
@@ -194,3 +193,110 @@ After accounting for the system efficiency of each turbine, the energy that will
 """))
 
 ```
+
+
+# Chapter 7 
+
+## 7.1. 
+***Explain the difference between primary energy and end-use energy.***
+
+Primary energy is the energy released by breaking chemical bonds in raw fuels, or the solar/wind/geothermal that is naturally available as renewable energy. End-use energy is the energy consumed by various applications after primary energy has been converted, transmitted, and distribution losses have been accounted for.
+
+## 7.4. 
+***Identify four ways that electrifying all energy and providing the electricity with 100 percent wind, water, and solar reduces end-use power demand. ***
+
+1. Electric vehicles are more efficient than combustion vehicles, so they need less energy to run.
+2. In producing high temperature heat in industiral settings, electric appliances are also far more efficient than current combustion-based techniques, which decreases the end use demand.
+3. End use demand is also decreased by using heat-pumps, which rely on heat transfer to create comforable infoor temperatures, rather than generating heat from fuel.
+4. Using renewable sources eliminates the need for energy to mine, transport and process fossil fuels, which decreases end-use demand 
+   
+
+## 7.10. 
+
+***If a wind farm produces $50,000/y in annual revenue for 30 years, what is the present value of that income, assuming a private discount rate of 4 percent? ***
+
+```{python}
+# present_val = future_val * (1/(1+r)^n)
+future_val = 50_000
+n = 30 # number of periods 
+r = 0.04 # discount rate 
+present_val = future_val * (1/(1+r)**n)
+display(Markdown(f"""
+The present value of the income is  ${present_val:.0f}.
+"""))
+
+
+
+```
+
+## 7.11. 
+***Estimate the cost per unit energy of a Pr = 5 MW nameplate capacity wind turbine with a capital cost of $1,200/kW, a capacity factor of CF = 34 percent, an O&M cost of $30/kW-y, and a lifetime of 30 years. Assume the discount rate is 3.5 percent, the construction time is 2 years, and the decommissioning cost is $13/kW. Also assume transmission, distribution, downtime, and array losses are 10 percent. Hint: Construct a table like Table 7.9. ***
+
+```{python}
+
+Pr = 5000 # kw -> nameplate capacity 
+P_capital = 1200 # $/kw -> capital cost 
+CF = 30/100 # percent -> capacity factor 
+OandM = 10 # $/kW/year -> O+M cost 
+i = 3/100 # percent ->  private discount rate
+T_construct = 1 # year -> construction time 
+F = 10 # $/kW -> decomissioning cost 
+losses = 10/100 # percent -> transmission, dist, and downtime losses 
+T_life = 30 # project lifetime 
+
+T_life_arr = np.arange(1, T_life+1)
+i_factor = (1 + i )**(T_life_arr)
+CRF =( i * i_factor ) / (i_factor  - 1 )
+
+# print(CRF, T_life_arr, len(CRF))
+
+# energy available per year 
+Et = Pr * CF * st_year_hours * (1 - losses)
+
+# presnet value of energy 
+Et_present = Et/i_factor
+
+# costs
+A_capital = P_capital * CRF
+A_decom = (F/i_factor)*CRF
+OM_cost = [0] + [OandM* Pr]*(T_life - 1)
+
+costs = A_capital + A_decom + OM_cost
+
+LCOE = (np.sum(costs/i_factor))/(np.sum(Et_present/i_factor))
+
+display(Markdown(f"""
+The levelized cost of energy is   ${LCOE:.3f}.
+"""))
+
+# print(CRF, Et, LCOE)
+```
+
+
+
+
+# Chapter 8 
+
+## 8.4.
+***List four methods of changing the electric power system when instantaneous electric power generation plus storage cannot meet instantaneous demand during some times of the year.***
+
+1. Over-generation of energy 
+2. Energy storage 
+3. A highly interconnected grid enabling long-distance transmission 
+4. Demand-response 
+
+## 8.6. 
+***Why should bundling of wind, solar, geothermal, and hydroelectric power significantly help to match power demand on the grid with power supply?***
+
+Hydroelectic 
+
+## 8.7. 
+***Calculate the number of heating degree days and cooling degree days over a four-day period relative to a reference temperature of 18 oC if the outdoor air temperatures on each day are –5 oC, 0 oC, 30 oC, and 35 oC, respectively. ***
+
+```{python}
+
+```
+
+
+## 8.10. 
+***What WWS technologies can be used to perform regulation services?*** 
