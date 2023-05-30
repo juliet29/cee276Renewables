@@ -123,15 +123,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <div class="cell" data-execution_count="1">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> units <span class="im">as</span> u</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display, Markdown, Latex</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># help: https://quarto.org/docs/computations/execution-options.html#inline-code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display, Markdown, Latex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="chapter-6" class="level1">
 <h1>Chapter 6</h1>
@@ -140,8 +135,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong><em>Under which, if either, condition is the lift-to-drag ratio of a wind turbine airfoil higher? At 10 m height where the air density is 1.23 kg/m3 and the wind speed is 5 m/s, or at 100 m height, where the air density is 1.21 kg/m3 and the wind speed is 9 m/s?</em></strong></p>
 <p><strong><em>Also, under which condition is the lift greater? Assume the blade length is 60 m, the blade width is an average of 1 m, the drag coefficient is 0.01, and the lift coefficient is 1.0.</em></strong></p>
 <div class="cell" data-execution_count="2">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_lift_or_drag(C, rho, v, Af,):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> C<span class="op">*</span>rho<span class="op">*</span>Af<span class="op">*</span>v</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -169,7 +162,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">In case A, the lift is </span><span class="sc">{</span>lift_a<span class="sc">:</span>P<span class="op">~</span><span class="sc">}</span><span class="ss">, but in case B it is </span><span class="sc">{</span>lift_b<span class="sc">:</span>P<span class="op">~</span><span class="sc">}</span><span class="ss">. Case B has the greater lift. </span></span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <p>For case A, the lift-to-drag ratio is 100.0, while for case B it is 157.0. Case B has the higher ratio.</p>
 <p>In case A, the lift is 369.0 kg/s, but in case B it is 580.8 kg/s. Case B has the greater lift.</p>
@@ -180,8 +172,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="section-1">6.4.</h2>
 <p><strong><em>If a wind turbine’s blade diameter is 100 m, calculate the kinetic energy passing through the blade’s swept area over 1 hour if the wind speed is 10 m/s. Assume the air density is 1.21 kg/m3. Also determine the power in the wind.</em></strong></p>
 <div class="cell" data-execution_count="3">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Dt <span class="op">=</span> <span class="dv">100</span> <span class="op">*</span> u.m</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="dv">1</span> <span class="op">*</span> u.hour </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="dv">10</span> <span class="op">*</span> u.m <span class="op">/</span> u.s </span>
@@ -199,7 +189,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"""</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="ss">The kinetic energy is </span><span class="sc">{</span>KE<span class="sc">.</span>to(<span class="st">"megajoules"</span>)<span class="sc">:</span><span class="fl">.2</span><span class="er">E</span><span class="op">~</span>P<span class="sc">}</span><span class="ss">, and the power in the wind is </span><span class="sc">{</span>P<span class="sc">.</span>to(<span class="st">"kilowatt"</span>)<span class="sc">:</span><span class="fl">.2</span><span class="er">E</span><span class="op">~</span>P<span class="sc">}</span><span class="ss">.</span></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <p>The kinetic energy is 1.71E+04 MJ, and the power in the wind is 4.75E+03 kW.</p>
 </div>
@@ -209,8 +198,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="section-2">6.5.</h2>
 <p><strong><em>If the wind speed at 100 m height above the ground is 8 m/s and that at 10 m height is 5 m/s, calculate the power law coefficient for this profile. Using the coefficient, estimate the wind speed at 200 m above the ground.</em></strong></p>
 <div class="cell" data-execution_count="4">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># hello whats up </span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>v100 <span class="op">=</span> <span class="dv">8</span> <span class="op">*</span> u.m <span class="op">/</span> u.s </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>h100 <span class="op">=</span> <span class="dv">100</span> <span class="op">*</span> u.m </span>
@@ -231,7 +218,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"""</span></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="ss">Alpha is  </span><span class="sc">{</span>alpha<span class="sc">:</span><span class="fl">.2</span><span class="er">f</span><span class="op">~</span>P<span class="sc">}</span><span class="ss">, and the wind speed at </span><span class="sc">{</span>h200<span class="sc">:</span><span class="fl">.0</span><span class="er">f</span><span class="op">~</span>P<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>v200<span class="sc">:</span><span class="fl">.2</span><span class="er">f</span><span class="op">~</span>P<span class="sc">}</span><span class="ss">.</span></span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <p>Alpha is 0.20, and the wind speed at 200 m is 9.22 m/s.</p>
 </div>
@@ -241,32 +227,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="section-3">6.9.</h2>
 <p><strong><em>Using the empirical capacity factor equation, estimate the capacity factors of a 5-MW turbine with a 126-m blade diameter and of a 1.5-MW turbine with a 77-m blade diameter when the mean wind speed (assuming a Rayleigh distribution) is 8 m/s in both cases. What is the annual energy output in both cases (assuming a non-leap year)?</em></strong></p>
 <div class="cell" data-execution_count="5">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># no units, equation is not empirical</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Vm <span class="op">=</span> <span class="dv">8</span> <span class="co"># * u.m / u.s</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>st_year_hours <span class="op">=</span> <span class="dv">8760</span> <span class="co"># * u.hour, standard year hours </span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># turbineA = {"Pr": 5000 * u.kilowatt, "D": 126 * u.m}</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># turbineB = {"Pr": 1500 * u.kilowatt, "D": 77 * u.m}</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>turbineA <span class="op">=</span> {<span class="st">"Pr"</span>: <span class="dv">5000</span> , <span class="st">"D"</span>: <span class="dv">126</span> }</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>turbineB <span class="op">=</span> {<span class="st">"Pr"</span>: <span class="dv">1500</span>, <span class="st">"D"</span>: <span class="dv">77</span> }</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_CF_and_energy(t, Vm<span class="op">=</span>Vm, hours<span class="op">=</span>st_year_hours):</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    CF <span class="op">=</span> <span class="fl">0.087</span> <span class="op">*</span> Vm <span class="op">-</span> (t[<span class="st">"Pr"</span>]<span class="op">/</span> t[<span class="st">"D"</span>]<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    Et <span class="op">=</span> t[<span class="st">"Pr"</span>] <span class="op">*</span> CF <span class="op">*</span> hours <span class="op">*</span> u.j</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> CF, Et.to(<span class="st">"megajoule"</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> calc_CF_and_energy(turbineA)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> calc_CF_and_energy(turbineB)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Vm <span class="op">=</span> <span class="dv">8</span> <span class="co"># * u.m / u.s</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>st_year_hours <span class="op">=</span> <span class="dv">8760</span> <span class="co"># * u.hour, standard year hours </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># turbineA = {"Pr": 5000 * u.kilowatt, "D": 126 * u.m}</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># turbineB = {"Pr": 1500 * u.kilowatt, "D": 77 * u.m}</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>turbineA <span class="op">=</span> {<span class="st">"Pr"</span>: <span class="dv">5000</span> , <span class="st">"D"</span>: <span class="dv">126</span> }</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>turbineB <span class="op">=</span> {<span class="st">"Pr"</span>: <span class="dv">1500</span>, <span class="st">"D"</span>: <span class="dv">77</span> }</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_CF_and_energy(t, Vm<span class="op">=</span>Vm, hours<span class="op">=</span>st_year_hours):</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    CF <span class="op">=</span> <span class="fl">0.087</span> <span class="op">*</span> Vm <span class="op">-</span> (t[<span class="st">"Pr"</span>]<span class="op">/</span> t[<span class="st">"D"</span>]<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    Et <span class="op">=</span> t[<span class="st">"Pr"</span>] <span class="op">*</span> CF <span class="op">*</span> hours <span class="op">*</span> u.j</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> CF, Et.to(<span class="st">"megajoule"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> calc_CF_and_energy(turbineA)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> calc_CF_and_energy(turbineB)</span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"""</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="ss">For the 5-MW turbine, the capacity factor is   </span><span class="sc">{</span>A[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss">, and the annual energy output is  </span><span class="sc">{</span>A[<span class="dv">1</span>]<span class="sc">:</span><span class="fl">.0</span><span class="er">f</span><span class="op">~</span>P<span class="sc">}</span><span class="ss">.</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="ss">For the 1.5-MW turbine, the capacity factor is   </span><span class="sc">{</span>B[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss">, and the annual energy output is  </span><span class="sc">{</span>B[<span class="dv">1</span>]<span class="sc">:</span><span class="fl">.0</span><span class="er">f</span><span class="op">~</span>P<span class="sc">}</span><span class="ss">.</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"""</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="ss">For the 5-MW turbine, the capacity factor is   </span><span class="sc">{</span>A[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss">, and the annual energy output is  </span><span class="sc">{</span>A[<span class="dv">1</span>]<span class="sc">:</span><span class="fl">.0</span><span class="er">f</span><span class="op">~</span>P<span class="sc">}</span><span class="ss">.</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="ss">For the 1.5-MW turbine, the capacity factor is   </span><span class="sc">{</span>B[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss">, and the annual energy output is  </span><span class="sc">{</span>B[<span class="dv">1</span>]<span class="sc">:</span><span class="fl">.0</span><span class="er">f</span><span class="op">~</span>P<span class="sc">}</span><span class="ss">.</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p>For the 5-MW turbine, the capacity factor is 0.38, and the annual energy output is 17 MJ.</p>
 <p>For the 1.5-MW turbine, the capacity factor is 0.44, and the annual energy output is 6 MJ.</p>
@@ -277,8 +261,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="section-4">6.11.</h2>
 <p><strong><em>Calculate the reduction in electricity generation that is possible in Haiti, without reducing end-use electricity availability, if the transmission and distribution loss is reduced by 5 percentage points from its 2014 value.</em></strong></p>
 <div class="cell" data-execution_count="6">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>del_Ltd <span class="op">=</span> <span class="dv">5</span> <span class="co"># percentage </span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Ltd <span class="op">=</span> <span class="fl">60.1</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>del_Gelec <span class="op">=</span> (<span class="dv">100</span> <span class="op">*</span> del_Ltd )<span class="op">/</span>(<span class="dv">100</span> <span class="op">-</span> Ltd <span class="op">+</span> del_Ltd)</span>
@@ -286,7 +268,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"""</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ss">Haiti can reduce electricity generation by </span><span class="sc">{</span>del_Gelec<span class="sc">:.2f}</span><span class="ss">%  by reducing its transmission and distribution losses.</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <p>Haiti can reduce electricity generation by 11.14% by reducing its transmission and distribution losses.</p>
 </div>
@@ -301,8 +282,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="section-6">6.16.</h2>
 <p><strong><em>How many 5-MW onshore wind turbines with a rotor diameter of 126 m operating in a mean annual wind speed of 7.5 m/s are needed to power the U.S. on-road vehicle fleet consisting of battery-electric (BE) vehicles if the end-use energy required to run such a fleet is Ev = 1.15 × 1012 kWh/y (2017) and the plug-to-wheel efficiency of an electric vehicle is ηe = 0.85? Assume the system efficiency of each wind turbine is ηt = 0.9. Hint: First determine the total electrical energy required to run the fleet by dividing the end-use energy required to run vehicles by the plug-to-wheel efficiency.</em></strong></p>
 <div class="cell" data-execution_count="7">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- electric vehicle fleet </span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Ev <span class="op">=</span> <span class="fl">1.15e12</span> <span class="op">*</span> u.kwh <span class="op">/</span> u.year <span class="co"># end use energy of battery electric vehicle fleet </span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>eta_e <span class="op">=</span> <span class="fl">0.85</span> <span class="co"># plug-to-wheel efficiency of an electric vehicle</span></span>
@@ -327,7 +306,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"""</span></span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="ss">After accounting for the system efficiency of each turbine, the energy that will be availabe from each will be </span><span class="sc">{</span>Et_available<span class="sc">:</span><span class="fl">.2</span><span class="er">E</span><span class="op">~</span>P<span class="sc">}</span><span class="ss"> per year. Dividing the total annual energy need of the electric vehicle fleet by the energy available from each turbine yields the number of turbines that will be needed: </span><span class="sc">{</span>n_turbines<span class="sc">:</span><span class="fl">.2</span><span class="er">E</span><span class="op">~</span>P<span class="sc">}</span><span class="ss">.</span></span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <p>Accounting for the plug-to-wheel efficiency of an electric vehicle, the total energy needed to run the fleet will be 1.35E+09 MW·h per year, or 4.87E+12 MJ.</p>
 </div>
@@ -358,8 +336,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="section-9">7.10.</h2>
 <p><strong><em>If a wind farm produces $50,000/y in annual revenue for 30 years, what is the present value of that income, assuming a private discount rate of 4 percent? </em></strong></p>
 <div class="cell" data-execution_count="8">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># present_val = future_val * (1/(1+r)^n)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>future_val <span class="op">=</span> <span class="dv">50_000</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">30</span> <span class="co"># number of periods </span></span>
@@ -368,7 +344,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"""</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ss">The present value of the income is  $</span><span class="sc">{</span>present_val<span class="sc">:.0f}</span><span class="ss">.</span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <p>The present value of the income is $15416.</p>
 </div>
@@ -378,8 +353,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="section-10">7.11.</h2>
 <p><strong><em>Estimate the cost per unit energy of a Pr = 5 MW nameplate capacity wind turbine with a capital cost of $1,200/kW, a capacity factor of CF = 34 percent, an O&amp;M cost of $30/kW-y, and a lifetime of 30 years. Assume the discount rate is 3.5 percent, the construction time is 2 years, and the decommissioning cost is $13/kW. Also assume transmission, distribution, downtime, and array losses are 10 percent. Hint: Construct a table like Table 7.9. </em></strong></p>
 <div class="cell" data-execution_count="9">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Pr <span class="op">=</span> <span class="dv">5000</span> <span class="co"># kw -&gt; nameplate capacity </span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>P_capital <span class="op">=</span> <span class="dv">1200</span> <span class="co"># $/kw -&gt; capital cost </span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>CF <span class="op">=</span> <span class="dv">30</span><span class="op">/</span><span class="dv">100</span> <span class="co"># percent -&gt; capacity factor </span></span>
@@ -404,19 +377,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># costs</span></span>
 <span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>A_capital <span class="op">=</span> P_capital <span class="op">*</span> CRF</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>A_decom <span class="op">=</span> (F<span class="op">/</span>i_factor)<span class="op">*</span>CRF</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>OM_cost <span class="op">=</span> [<span class="dv">0</span>] <span class="op">+</span> [OandM<span class="op">*</span> Pr]<span class="op">*</span>(T_life <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>A_decom <span class="op">=</span> (F<span class="op">/</span>i_factor)<span class="op">*</span> CRF</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>OM_cost <span class="op">=</span> [<span class="dv">0</span>] <span class="op">+</span> [OandM <span class="op">*</span> Pr]<span class="op">*</span>(T_life <span class="op">-</span> <span class="dv">1</span>)</span>
 <span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>costs <span class="op">=</span> A_capital <span class="op">+</span> A_decom <span class="op">+</span> OM_cost</span>
 <span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>LCOE <span class="op">=</span> (np.<span class="bu">sum</span>(costs<span class="op">/</span>i_factor))<span class="op">/</span>(np.<span class="bu">sum</span>(Et_present<span class="op">/</span>i_factor))</span>
 <span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"""</span></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="ss">The levelized cost of energy is   $</span><span class="sc">{</span>LCOE<span class="sc">:.3f}</span><span class="ss">.</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="ss">The levelized cost of energy is $</span><span class="sc">{</span>LCOE<span class="sc">:.3f}</span><span class="ss">.</span></span>
 <span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span>
 <span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="co"># print(CRF, Et, LCOE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <p>The levelized cost of energy is $0.006.</p>
 </div>
@@ -438,15 +410,82 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="section-12" class="level2">
 <h2 class="anchored" data-anchor-id="section-12">8.6.</h2>
 <p><strong><em>Why should bundling of wind, solar, geothermal, and hydroelectric power significantly help to match power demand on the grid with power supply?</em></strong></p>
-<p>Hydroelectic</p>
+<p>These renewable sources of energy often produce output at complementary times. For instance, the high pressure systems that occur when the sun is shining are often absent when the wind is blowing. Having a system where all sources are interconnected can smooth the supply curve, and ensure that when exess power is produced it can be stored.</p>
 </section>
 <section id="section-13" class="level2">
 <h2 class="anchored" data-anchor-id="section-13">8.7.</h2>
-<p><strong><em>Calculate the number of heating degree days and cooling degree days over a four-day period relative to a reference temperature of 18 oC if the outdoor air temperatures on each day are –5 oC, 0 oC, 30 oC, and 35 oC, respectively. </em></strong></p>
+<p><strong><em>Calculate the number of heating degree days and cooling degree days over a four-day period relative to a reference temperature of 18 oC if the outdoor air temperatures on each day are –5ºC, 0ºC, 30ºC, and 35ºC, respectively. </em></strong></p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>temp1 <span class="op">=</span> <span class="op">-</span><span class="dv">5</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>temp2 <span class="op">=</span> <span class="dv">0</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>temp3 <span class="op">=</span> <span class="dv">30</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>temp4 <span class="op">=</span> <span class="dv">35</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ref <span class="op">=</span> <span class="dv">18</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>hdds <span class="op">=</span> (ref <span class="op">-</span> temp1) <span class="op">+</span> (ref <span class="op">-</span> temp2)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>cdds <span class="op">=</span> (temp3 <span class="op">-</span> ref) <span class="op">+</span> (temp4 <span class="op">-</span> ref)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"""</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="ss">The number of heating degree days is </span><span class="sc">{</span>hdds<span class="sc">:.0f}</span><span class="ss">ºC and the number of cooling degree days is </span><span class="sc">{</span>cdds<span class="sc">:.0f}</span><span class="ss">ºC.</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p>The number of heating degree days is 41ºC and the number of cooling degree days is 29ºC.</p>
+</div>
+</div>
 </section>
 <section id="section-14" class="level2">
 <h2 class="anchored" data-anchor-id="section-14">8.10.</h2>
 <p><strong><em>What WWS technologies can be used to perform regulation services?</em></strong></p>
+<p>Hydropwer, batteries, and storage from pumped hydropower, flywheel, compressed air, and gravitational storage with solid masses.</p>
+</section>
+</section>
+<section id="chapter-9" class="level1">
+<h1>Chapter 9</h1>
+<section id="section-15" class="level2">
+<h2 class="anchored" data-anchor-id="section-15">9.1.</h2>
+<p><strong><em>List four policy measures that could be implemented to encourage the expansion of WWS energy systems.</em></strong></p>
+<ol type="1">
+<li>Renewable portfolio standards requiring certain fraction of ppwer generation to come from clean energy sources</li>
+<li>Financial uncentives and laws for increasing energy efficiency and reducing energy use</li>
+<li>Laws requiring demand response</li>
+<li>Feed-in tariffs that cover the difference between electricity gemeration cost and wholesale electricity prices</li>
+</ol>
+</section>
+<section id="section-16" class="level2">
+<h2 class="anchored" data-anchor-id="section-16">9.2.</h2>
+<p><strong><em>List four barriers that could slow the large-scale implementation of clean, renewable energy.</em></strong></p>
+<ol type="1">
+<li>Long term vested interests from current energy infrastructure</li>
+<li>Zoning issues</li>
+<li>Countries engaged in conflict</li>
+<li>Countireis with substantial poverty</li>
+</ol>
+</section>
+<section id="section-17" class="level2">
+<h2 class="anchored" data-anchor-id="section-17">9.3.</h2>
+<p><strong><em>What fossil-fuel-based technologies will likely take the longest to transition to electricity or electrolytic-hydrogen alternatives?</em></strong></p>
+<p>Long haul airfraft will take the longest, estimated between between 2030 and 2040, to transition as fuel cell sizes and efficiencis will need to improve</p>
+</section>
+<section id="section-18" class="level2">
+<h2 class="anchored" data-anchor-id="section-18">9.4.</h2>
+<p><strong><em>If the cumulative anthropogenic carbon emissions at the end of 2018 were 2,155 Gt-CO2, and the limit to avoid 1.5 oC global warming is 2,400 Gt-CO2, by what year will global warming reach 1.5 oC if the anthropogenic emission rate from fossil-fuel combustion, cement manufacturing, and land use change is 40 Gt-CO2/y?</em></strong></p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>co2_2018 <span class="op">=</span> <span class="dv">2_155</span> <span class="co"># Gt-CO2</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>co2_lim <span class="op">=</span> <span class="dv">2_400</span> <span class="co"># Gt-CO2 1.5ºC limit </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>em_rate <span class="op">=</span> <span class="dv">40</span> <span class="co"># Gt-CO2 emitted / year </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>co2_remaining <span class="op">=</span> co2_lim <span class="op">-</span> co2_2018 </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>years_remaining <span class="op">=</span> co2_remaining<span class="op">/</span> em_rate </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>year_reached <span class="op">=</span> years_remaining <span class="op">+</span> <span class="dv">2018</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>display(Markdown(<span class="ss">f"""</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="ss">The world will reach the 1.5º global warming limit about </span><span class="sc">{</span>years_remaining<span class="sc">:.3f}</span><span class="ss"> years from now, so in </span><span class="sc">{</span>year_reached<span class="sc">:.0f}</span><span class="ss">.</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p>The world will reach the 1.5º global warming limit about 6.125 years from now, so in 2024.</p>
+</div>
+</div>
 </section>
 </section>
 

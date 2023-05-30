@@ -2,7 +2,7 @@
 title: "Renewables Homework 3"
 format:
   html:
-    code-fold: true
+    code-fold: false
 jupyter: python3
 ---
 
@@ -12,8 +12,6 @@ import numpy as np
 import units as u
 import numpy as np
 from IPython.display import display, Markdown, Latex
-
-# help: https://quarto.org/docs/computations/execution-options.html#inline-code
 
 ```
 
@@ -258,15 +256,15 @@ Et_present = Et/i_factor
 
 # costs
 A_capital = P_capital * CRF
-A_decom = (F/i_factor)*CRF
-OM_cost = [0] + [OandM* Pr]*(T_life - 1)
+A_decom = (F/i_factor)* CRF
+OM_cost = [0] + [OandM * Pr]*(T_life - 1)
 
 costs = A_capital + A_decom + OM_cost
 
 LCOE = (np.sum(costs/i_factor))/(np.sum(Et_present/i_factor))
 
 display(Markdown(f"""
-The levelized cost of energy is   ${LCOE:.3f}.
+The levelized cost of energy is ${LCOE:.3f}.
 """))
 
 # print(CRF, Et, LCOE)
@@ -288,15 +286,75 @@ The levelized cost of energy is   ${LCOE:.3f}.
 ## 8.6. 
 ***Why should bundling of wind, solar, geothermal, and hydroelectric power significantly help to match power demand on the grid with power supply?***
 
-Hydroelectic 
+These renewable sources of energy often produce output at complementary times. For instance, the high pressure systems that occur when the sun is shining are often absent when the wind is blowing. Having a system where all sources are interconnected can smooth the supply curve, and ensure that when exess power is produced it can be stored. 
 
 ## 8.7. 
-***Calculate the number of heating degree days and cooling degree days over a four-day period relative to a reference temperature of 18 oC if the outdoor air temperatures on each day are –5 oC, 0 oC, 30 oC, and 35 oC, respectively. ***
+***Calculate the number of heating degree days and cooling degree days over a four-day period relative to a reference temperature of 18 oC if the outdoor air temperatures on each day are –5ºC, 0ºC, 30ºC, and 35ºC, respectively. ***
 
 ```{python}
+temp1 = -5
+temp2 = 0 
+temp3 = 30 
+temp4 = 35
+
+ref = 18
+hdds = (ref - temp1) + (ref - temp2)
+
+cdds = (temp3 - ref) + (temp4 - ref)
+
+display(Markdown(f"""
+The number of heating degree days is {hdds:.0f}ºC and the number of cooling degree days is {cdds:.0f}ºC.
+"""))
+
 
 ```
 
 
 ## 8.10. 
 ***What WWS technologies can be used to perform regulation services?*** 
+
+Hydropwer, batteries, and storage from pumped hydropower, flywheel, compressed air, and gravitational storage with solid masses.
+
+
+# Chapter 9 
+
+## 9.1. 
+
+***List four policy measures that could be implemented to encourage 
+the expansion of WWS energy systems.*** 
+
+1. Renewable portfolio standards requiring certain fraction of ppwer generation to come from clean energy sources 
+2. Financial uncentives and laws for increasing energy efficiency and reducing energy use
+3. Laws requiring demand response 
+4. Feed-in tariffs that cover the difference between electricity gemeration cost and wholesale electricity prices 
+
+## 9.2. 
+***List four barriers that could slow the large-scale implementation of clean, renewable energy.*** 
+
+1. Long term vested interests from current energy infrastructure
+2. Zoning issues 
+3. Countries engaged in conflict 
+4. Countireis with substantial poverty 
+
+## 9.3. 
+***What fossil-fuel-based technologies will likely take the longest to transition to electricity or electrolytic-hydrogen alternatives?***
+
+Long haul airfraft will take the longest, estimated between between 2030 and 2040,  to transition as fuel cell sizes and efficiencis will need to improve 
+
+## 9.4. 
+***If the cumulative anthropogenic carbon emissions at the end of 2018 were 2,155 Gt-CO2, and the limit to avoid 1.5 oC global warming is 2,400 Gt-CO2, by what year will global warming reach 1.5 oC if the anthropogenic emission rate from fossil-fuel combustion, cement manufacturing, and land use change is 40 Gt-CO2/y?*** 
+
+```{python}
+co2_2018 = 2_155 # Gt-CO2
+co2_lim = 2_400 # Gt-CO2 1.5ºC limit 
+em_rate = 40 # Gt-CO2 emitted / year 
+
+co2_remaining = co2_lim - co2_2018 
+years_remaining = co2_remaining/ em_rate 
+year_reached = years_remaining + 2018
+
+display(Markdown(f"""
+The world will reach the 1.5º global warming limit about {years_remaining:.3f} years from now, so in {year_reached:.0f}.
+"""))
+
+```
