@@ -1,8 +1,13 @@
 ---
 title: "Renewables Homework 3"
 format:
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
   html:
     code-fold: false
+    code-overflow: wrap
 jupyter: python3
 ---
 
@@ -84,7 +89,7 @@ The kinetic energy is {KE.to("megajoules"):.2E~P}, and the power in the wind is 
 ## 6.5. 
 ***If the wind speed at 100 m height above the ground is 8 m/s and that at 10 m height is 5 m/s, calculate the power law coefficient for this profile. Using the coefficient, estimate the wind speed at 200 m above the ground.*** 
 ```{python}
-# hello whats up 
+
 v100 = 8 * u.m / u.s 
 h100 = 100 * u.m 
 
@@ -246,7 +251,6 @@ T_life_arr = np.arange(1, T_life+1)
 i_factor = (1 + i )**(T_life_arr)
 CRF =( i * i_factor ) / (i_factor  - 1 )
 
-# print(CRF, T_life_arr, len(CRF))
 
 # energy available per year 
 Et = Pr * CF * st_year_hours * (1 - losses)

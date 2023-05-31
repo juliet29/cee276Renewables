@@ -1,0 +1,732 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Renewables Homework 3},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Renewables Homework 3}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, enhanced, boxrule=0pt, frame hidden, sharp corners, breakable, interior hidden]}{\end{tcolorbox}}\fi
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ units }\ImportTok{as}\NormalTok{ u}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{from}\NormalTok{ IPython.display }\ImportTok{import}\NormalTok{ display, Markdown, Latex}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{chapter-6}{%
+\section{Chapter 6}\label{chapter-6}}
+
+\hypertarget{section}{%
+\subsection{6.2.}\label{section}}
+
+\textbf{\emph{Under which, if either, condition is the lift-to-drag
+ratio of a wind turbine airfoil higher? At 10 m height where the air
+density is 1.23 kg/m3 and the wind speed is 5 m/s, or at 100 m height,
+where the air density is 1.21 kg/m3 and the wind speed is 9 m/s?}}
+
+\textbf{\emph{Also, under which condition is the lift greater? Assume
+the blade length is 60 m, the blade width is an average of 1 m, the drag
+coefficient is 0.01, and the lift coefficient is 1.0.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ calc\_lift\_or\_drag(C, rho, v, Af,):}
+    \ControlFlowTok{return}\NormalTok{ C}\OperatorTok{*}\NormalTok{rho}\OperatorTok{*}\NormalTok{Af}\OperatorTok{*}\NormalTok{v}
+
+
+\NormalTok{C\_lift }\OperatorTok{=} \DecValTok{1}
+\NormalTok{C\_drag }\OperatorTok{=} \FloatTok{0.01} 
+
+\NormalTok{rho\_a }\OperatorTok{=} \FloatTok{1.23} \OperatorTok{*}\NormalTok{ u.kg }\OperatorTok{/}\NormalTok{ u.m}\OperatorTok{**}\DecValTok{3}
+\NormalTok{v\_a }\OperatorTok{=} \DecValTok{5} \OperatorTok{*}\NormalTok{ u.m}\OperatorTok{/}\NormalTok{ u.s}
+
+\NormalTok{rho\_b }\OperatorTok{=} \FloatTok{1.21} \OperatorTok{*}\NormalTok{ u.kg }\OperatorTok{/}\NormalTok{ u.m}\OperatorTok{**}\DecValTok{3}
+\NormalTok{v\_b }\OperatorTok{=} \DecValTok{8} \OperatorTok{*}\NormalTok{ u.m}\OperatorTok{/}\NormalTok{ u.s}
+
+\NormalTok{blade\_area }\OperatorTok{=} \DecValTok{60} \OperatorTok{*}\NormalTok{ u.m }\OperatorTok{*} \DecValTok{1} \OperatorTok{*}\NormalTok{ u.m }
+
+
+\NormalTok{lift\_a }\OperatorTok{=}\NormalTok{ calc\_lift\_or\_drag(C}\OperatorTok{=}\NormalTok{C\_lift, rho}\OperatorTok{=}\NormalTok{rho\_a, v}\OperatorTok{=}\NormalTok{v\_a, Af}\OperatorTok{=}\NormalTok{blade\_area)}
+\NormalTok{lift\_b }\OperatorTok{=}\NormalTok{ calc\_lift\_or\_drag(C}\OperatorTok{=}\NormalTok{C\_lift, rho}\OperatorTok{=}\NormalTok{rho\_b, v}\OperatorTok{=}\NormalTok{v\_b, Af}\OperatorTok{=}\NormalTok{blade\_area)}
+
+\NormalTok{drag\_a }\OperatorTok{=}\NormalTok{ calc\_lift\_or\_drag(C}\OperatorTok{=}\NormalTok{C\_drag, rho}\OperatorTok{=}\NormalTok{rho\_a, v}\OperatorTok{=}\NormalTok{v\_a, Af}\OperatorTok{=}\NormalTok{blade\_area)}
+\NormalTok{drag\_b }\OperatorTok{=}\NormalTok{ calc\_lift\_or\_drag(C}\OperatorTok{=}\NormalTok{C\_drag, rho}\OperatorTok{=}\NormalTok{rho\_a, v}\OperatorTok{=}\NormalTok{v\_a, Af}\OperatorTok{=}\NormalTok{blade\_area)}
+
+\NormalTok{display(Markdown(}\SpecialStringTok{f"""}
+\SpecialStringTok{For case A, the lift{-}to{-}drag ratio is }\SpecialCharTok{\{}\NormalTok{lift\_a}\OperatorTok{/}\NormalTok{drag\_a}\SpecialCharTok{:}\NormalTok{P}\OperatorTok{\textasciitilde{}}\SpecialCharTok{\}}\SpecialStringTok{, while for case B it is }\SpecialCharTok{\{}\NormalTok{np}\SpecialCharTok{.}\BuiltInTok{round}\NormalTok{(lift\_b}\OperatorTok{/}\NormalTok{drag\_b,}\DecValTok{0}\NormalTok{)}\SpecialCharTok{:}\NormalTok{P}\OperatorTok{\textasciitilde{}}\SpecialCharTok{\}}\SpecialStringTok{. Case B has the higher ratio. }
+
+\SpecialStringTok{In case A, the lift is }\SpecialCharTok{\{}\NormalTok{lift\_a}\SpecialCharTok{:}\NormalTok{P}\OperatorTok{\textasciitilde{}}\SpecialCharTok{\}}\SpecialStringTok{, but in case B it is }\SpecialCharTok{\{}\NormalTok{lift\_b}\SpecialCharTok{:}\NormalTok{P}\OperatorTok{\textasciitilde{}}\SpecialCharTok{\}}\SpecialStringTok{. Case B has the greater lift. }
+\SpecialStringTok{"""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+For case A, the lift-to-drag ratio is 100.0, while for case B it is
+157.0. Case B has the higher ratio.
+
+In case A, the lift is 369.0 kg/s, but in case B it is 580.8 kg/s. Case
+B has the greater lift.
+
+\hypertarget{section-1}{%
+\subsection{6.4.}\label{section-1}}
+
+\textbf{\emph{If a wind turbine's blade diameter is 100 m, calculate the
+kinetic energy passing through the blade's swept area over 1 hour if the
+wind speed is 10 m/s. Assume the air density is 1.21 kg/m3. Also
+determine the power in the wind.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Dt }\OperatorTok{=} \DecValTok{100} \OperatorTok{*}\NormalTok{ u.m}
+\NormalTok{t }\OperatorTok{=} \DecValTok{1} \OperatorTok{*}\NormalTok{ u.hour }
+\NormalTok{v }\OperatorTok{=} \DecValTok{10} \OperatorTok{*}\NormalTok{ u.m }\OperatorTok{/}\NormalTok{ u.s }
+\NormalTok{rho }\OperatorTok{=} \FloatTok{1.21} \OperatorTok{*}\NormalTok{ u.kg }\OperatorTok{/}\NormalTok{ u.m}\OperatorTok{**}\DecValTok{3}
+
+\NormalTok{x }\OperatorTok{=}\NormalTok{ v }\OperatorTok{*}\NormalTok{ t }
+\NormalTok{At }\OperatorTok{=}\NormalTok{ np.pi }\OperatorTok{*}\NormalTok{ (}\FloatTok{0.5}\OperatorTok{*}\NormalTok{Dt)}\OperatorTok{**}\DecValTok{2} \CommentTok{\# A = pi * r\^{}2 }
+\NormalTok{Ma }\OperatorTok{=}\NormalTok{ rho }\OperatorTok{*}\NormalTok{ At }\OperatorTok{*}\NormalTok{ x }
+
+\NormalTok{KE }\OperatorTok{=} \FloatTok{0.5} \OperatorTok{*}\NormalTok{ Ma }\OperatorTok{*}\NormalTok{ v}\OperatorTok{**}\DecValTok{2}
+
+\NormalTok{P }\OperatorTok{=} \FloatTok{0.5} \OperatorTok{*}\NormalTok{ rho }\OperatorTok{*}\NormalTok{ At }\OperatorTok{*}\NormalTok{ v}\OperatorTok{**}\DecValTok{3}
+
+
+\NormalTok{display(Markdown(}\SpecialStringTok{f"""}
+\SpecialStringTok{The kinetic energy is }\SpecialCharTok{\{}\NormalTok{KE}\SpecialCharTok{.}\NormalTok{to(}\StringTok{"megajoules"}\NormalTok{)}\SpecialCharTok{:}\FloatTok{.2}\ErrorTok{E}\OperatorTok{\textasciitilde{}}\NormalTok{P}\SpecialCharTok{\}}\SpecialStringTok{, and the power in the wind is }\SpecialCharTok{\{}\NormalTok{P}\SpecialCharTok{.}\NormalTok{to(}\StringTok{"kilowatt"}\NormalTok{)}\SpecialCharTok{:}\FloatTok{.2}\ErrorTok{E}\OperatorTok{\textasciitilde{}}\NormalTok{P}\SpecialCharTok{\}}\SpecialStringTok{.}
+\SpecialStringTok{"""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+The kinetic energy is 1.71E+04 MJ, and the power in the wind is 4.75E+03
+kW.
+
+\hypertarget{section-2}{%
+\subsection{6.5.}\label{section-2}}
+
+\textbf{\emph{If the wind speed at 100 m height above the ground is 8
+m/s and that at 10 m height is 5 m/s, calculate the power law
+coefficient for this profile. Using the coefficient, estimate the wind
+speed at 200 m above the ground.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# hello whats up }
+\NormalTok{v100 }\OperatorTok{=} \DecValTok{8} \OperatorTok{*}\NormalTok{ u.m }\OperatorTok{/}\NormalTok{ u.s }
+\NormalTok{h100 }\OperatorTok{=} \DecValTok{100} \OperatorTok{*}\NormalTok{ u.m }
+
+\NormalTok{v10 }\OperatorTok{=} \DecValTok{5} \OperatorTok{*}\NormalTok{ u.m }\OperatorTok{/}\NormalTok{ u.s }
+\NormalTok{h10 }\OperatorTok{=} \DecValTok{10} \OperatorTok{*}\NormalTok{ u.m }
+
+\CommentTok{\# v100 = v10 * (h100/h10)\^{}alpha }
+\CommentTok{\# log10(v100/v10) = log10((h100/h10)\^{}alpha) {-}{-}\textgreater{}  h100/h10 = 10 }
+\CommentTok{\# log10(v100/v10) = log10((10)\^{}alpha)}
+\CommentTok{\# log10(v100/v10) = alpha}
+
+\NormalTok{alpha }\OperatorTok{=}\NormalTok{ np.log10(v100}\OperatorTok{/}\NormalTok{v10)}
+
+\NormalTok{h200 }\OperatorTok{=} \DecValTok{200} \OperatorTok{*}\NormalTok{ u.m}
+\NormalTok{v200 }\OperatorTok{=}\NormalTok{ v10 }\OperatorTok{*}\NormalTok{ (h200}\OperatorTok{/}\NormalTok{h10)}\OperatorTok{**}\NormalTok{alpha}
+
+\NormalTok{display(Markdown(}\SpecialStringTok{f"""}
+\SpecialStringTok{Alpha is  }\SpecialCharTok{\{}\NormalTok{alpha}\SpecialCharTok{:}\FloatTok{.2}\ErrorTok{f}\OperatorTok{\textasciitilde{}}\NormalTok{P}\SpecialCharTok{\}}\SpecialStringTok{, and the wind speed at }\SpecialCharTok{\{}\NormalTok{h200}\SpecialCharTok{:}\FloatTok{.0}\ErrorTok{f}\OperatorTok{\textasciitilde{}}\NormalTok{P}\SpecialCharTok{\}}\SpecialStringTok{ is }\SpecialCharTok{\{}\NormalTok{v200}\SpecialCharTok{:}\FloatTok{.2}\ErrorTok{f}\OperatorTok{\textasciitilde{}}\NormalTok{P}\SpecialCharTok{\}}\SpecialStringTok{.}
+\SpecialStringTok{"""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Alpha is 0.20, and the wind speed at 200 m is 9.22 m/s.
+
+\hypertarget{section-3}{%
+\subsection{6.9.}\label{section-3}}
+
+\textbf{\emph{Using the empirical capacity factor equation, estimate the
+capacity factors of a 5-MW turbine with a 126-m blade diameter and of a
+1.5-MW turbine with a 77-m blade diameter when the mean wind speed
+(assuming a Rayleigh distribution) is 8 m/s in both cases. What is the
+annual energy output in both cases (assuming a non-leap year)?}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# no units, equation is not empirical}
+
+\NormalTok{Vm }\OperatorTok{=} \DecValTok{8} \CommentTok{\# * u.m / u.s}
+\NormalTok{st\_year\_hours }\OperatorTok{=} \DecValTok{8760} \CommentTok{\# * u.hour, standard year hours }
+
+\CommentTok{\# turbineA = \{"Pr": 5000 * u.kilowatt, "D": 126 * u.m\}}
+\CommentTok{\# turbineB = \{"Pr": 1500 * u.kilowatt, "D": 77 * u.m\}}
+\NormalTok{turbineA }\OperatorTok{=}\NormalTok{ \{}\StringTok{"Pr"}\NormalTok{: }\DecValTok{5000}\NormalTok{ , }\StringTok{"D"}\NormalTok{: }\DecValTok{126}\NormalTok{ \}}
+\NormalTok{turbineB }\OperatorTok{=}\NormalTok{ \{}\StringTok{"Pr"}\NormalTok{: }\DecValTok{1500}\NormalTok{, }\StringTok{"D"}\NormalTok{: }\DecValTok{77}\NormalTok{ \}}
+
+\KeywordTok{def}\NormalTok{ calc\_CF\_and\_energy(t, Vm}\OperatorTok{=}\NormalTok{Vm, hours}\OperatorTok{=}\NormalTok{st\_year\_hours):}
+\NormalTok{    CF }\OperatorTok{=} \FloatTok{0.087} \OperatorTok{*}\NormalTok{ Vm }\OperatorTok{{-}}\NormalTok{ (t[}\StringTok{"Pr"}\NormalTok{]}\OperatorTok{/}\NormalTok{ t[}\StringTok{"D"}\NormalTok{]}\OperatorTok{**}\DecValTok{2}\NormalTok{)}
+\NormalTok{    Et }\OperatorTok{=}\NormalTok{ t[}\StringTok{"Pr"}\NormalTok{] }\OperatorTok{*}\NormalTok{ CF }\OperatorTok{*}\NormalTok{ hours }\OperatorTok{*}\NormalTok{ u.j}
+    \ControlFlowTok{return}\NormalTok{ CF, Et.to(}\StringTok{"megajoule"}\NormalTok{)}
+
+\NormalTok{A }\OperatorTok{=}\NormalTok{ calc\_CF\_and\_energy(turbineA)}
+\NormalTok{B }\OperatorTok{=}\NormalTok{ calc\_CF\_and\_energy(turbineB)}
+
+
+\NormalTok{display(Markdown(}\SpecialStringTok{f"""}
+\SpecialStringTok{For the 5{-}MW turbine, the capacity factor is   }\SpecialCharTok{\{}\NormalTok{A[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{:.2f\}}\SpecialStringTok{, and the annual energy output is  }\SpecialCharTok{\{}\NormalTok{A[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{:}\FloatTok{.0}\ErrorTok{f}\OperatorTok{\textasciitilde{}}\NormalTok{P}\SpecialCharTok{\}}\SpecialStringTok{.}
+
+\SpecialStringTok{For the 1.5{-}MW turbine, the capacity factor is   }\SpecialCharTok{\{}\NormalTok{B[}\DecValTok{0}\NormalTok{]}\SpecialCharTok{:.2f\}}\SpecialStringTok{, and the annual energy output is  }\SpecialCharTok{\{}\NormalTok{B[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{:}\FloatTok{.0}\ErrorTok{f}\OperatorTok{\textasciitilde{}}\NormalTok{P}\SpecialCharTok{\}}\SpecialStringTok{.}
+\SpecialStringTok{"""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+For the 5-MW turbine, the capacity factor is 0.38, and the annual energy
+output is 17 MJ.
+
+For the 1.5-MW turbine, the capacity factor is 0.44, and the annual
+energy output is 6 MJ.
+
+\hypertarget{section-4}{%
+\subsection{6.11.}\label{section-4}}
+
+\textbf{\emph{Calculate the reduction in electricity generation that is
+possible in Haiti, without reducing end-use electricity availability, if
+the transmission and distribution loss is reduced by 5 percentage points
+from its 2014 value.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{del\_Ltd }\OperatorTok{=} \DecValTok{5} \CommentTok{\# percentage }
+\NormalTok{Ltd }\OperatorTok{=} \FloatTok{60.1}
+\NormalTok{del\_Gelec }\OperatorTok{=}\NormalTok{ (}\DecValTok{100} \OperatorTok{*}\NormalTok{ del\_Ltd )}\OperatorTok{/}\NormalTok{(}\DecValTok{100} \OperatorTok{{-}}\NormalTok{ Ltd }\OperatorTok{+}\NormalTok{ del\_Ltd)}
+
+\NormalTok{display(Markdown(}\SpecialStringTok{f"""}
+\SpecialStringTok{Haiti can reduce electricity generation by }\SpecialCharTok{\{}\NormalTok{del\_Gelec}\SpecialCharTok{:.2f\}}\SpecialStringTok{\%  by reducing its transmission and distribution losses.}
+\SpecialStringTok{"""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Haiti can reduce electricity generation by 11.14\% by reducing its
+transmission and distribution losses.
+
+\hypertarget{section-5}{%
+\subsection{6.14.}\label{section-5}}
+
+\textbf{\emph{Explain the difference between footprint and spacing of an
+energy technology. What are some of the uses of the spacing?}}
+
+The footprint is the physical area on the topsoil or water that is
+touched by an energy technology. Spacing is the area that is essentially
+``in between'' the energy technologies. For instance, wind turbines
+require a certain spacing for optimal energy production and to prevent
+harm to the surrounding locations and each other. Spacing can be used
+for agriculture, other energy technologies like solar arrays, or can
+exist as forests/open space.
+
+\hypertarget{section-6}{%
+\subsection{6.16.}\label{section-6}}
+
+\textbf{\emph{How many 5-MW onshore wind turbines with a rotor diameter
+of 126 m operating in a mean annual wind speed of 7.5 m/s are needed to
+power the U.S. on-road vehicle fleet consisting of battery-electric (BE)
+vehicles if the end-use energy required to run such a fleet is Ev = 1.15
+× 1012 kWh/y (2017) and the plug-to-wheel efficiency of an electric
+vehicle is ηe = 0.85? Assume the system efficiency of each wind turbine
+is ηt = 0.9. Hint: First determine the total electrical energy required
+to run the fleet by dividing the end-use energy required to run vehicles
+by the plug-to-wheel efficiency.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# {-}{-}{-} electric vehicle fleet }
+\NormalTok{Ev }\OperatorTok{=} \FloatTok{1.15e12} \OperatorTok{*}\NormalTok{ u.kwh }\OperatorTok{/}\NormalTok{ u.year }\CommentTok{\# end use energy of battery electric vehicle fleet }
+\NormalTok{eta\_e }\OperatorTok{=} \FloatTok{0.85} \CommentTok{\# plug{-}to{-}wheel efficiency of an electric vehicle}
+
+\NormalTok{Ev\_total }\OperatorTok{=}\NormalTok{ (Ev}\OperatorTok{/}\NormalTok{eta\_e).to(}\StringTok{"megawatt * hour / year"}\NormalTok{) }\OperatorTok{*}\NormalTok{ u.year}
+\NormalTok{Ev\_total\_joules }\OperatorTok{=}\NormalTok{ (Ev\_total).to(}\StringTok{"megajoule"}\NormalTok{)}
+
+\CommentTok{\# {-}{-} wind turbines }
+\CommentTok{\# See function definition in problem 6.9. The turbine described here has the same characteristics of turbine A in that problekm =\textgreater{} 5{-}MW and 126m diameter }
+\NormalTok{Vm2 }\OperatorTok{=} \FloatTok{7.5} \CommentTok{\# u.m / u.s}
+\NormalTok{CF, Et }\OperatorTok{=}\NormalTok{ calc\_CF\_and\_energy(turbineA, Vm}\OperatorTok{=}\NormalTok{Vm2)}
+
+\NormalTok{eta\_t }\OperatorTok{=} \FloatTok{0.9} \CommentTok{\# turbine efficiency }
+\NormalTok{Et\_available }\OperatorTok{=}\NormalTok{ Et }\OperatorTok{*}\NormalTok{ eta\_t }
+
+\NormalTok{n\_turbines }\OperatorTok{=}\NormalTok{ Ev\_total\_joules }\OperatorTok{/}\NormalTok{ Et\_available }
+
+\NormalTok{display(Markdown(}\SpecialStringTok{f"""}
+\SpecialStringTok{Accounting for the plug{-}to{-}wheel efficiency of an electric vehicle, the total energy needed to run the fleet will be }\SpecialCharTok{\{}\NormalTok{Ev\_total}\SpecialCharTok{:}\FloatTok{.2}\ErrorTok{E}\OperatorTok{\textasciitilde{}}\NormalTok{P}\SpecialCharTok{\}}\SpecialStringTok{ per year, or }\SpecialCharTok{\{}\NormalTok{Ev\_total\_joules}\SpecialCharTok{:}\FloatTok{.2}\ErrorTok{E}\OperatorTok{\textasciitilde{}}\NormalTok{P}\SpecialCharTok{\}}\SpecialStringTok{.}
+\SpecialStringTok{"""}\NormalTok{))}
+
+\NormalTok{display(Markdown(}\SpecialStringTok{f"""}
+\SpecialStringTok{After accounting for the system efficiency of each turbine, the energy that will be availabe from each will be }\SpecialCharTok{\{}\NormalTok{Et\_available}\SpecialCharTok{:}\FloatTok{.2}\ErrorTok{E}\OperatorTok{\textasciitilde{}}\NormalTok{P}\SpecialCharTok{\}}\SpecialStringTok{ per year. Dividing the total annual energy need of the electric vehicle fleet by the energy available from each turbine yields the number of turbines that will be needed: }\SpecialCharTok{\{}\NormalTok{n\_turbines}\SpecialCharTok{:}\FloatTok{.2}\ErrorTok{E}\OperatorTok{\textasciitilde{}}\NormalTok{P}\SpecialCharTok{\}}\SpecialStringTok{.}
+\SpecialStringTok{"""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Accounting for the plug-to-wheel efficiency of an electric vehicle, the
+total energy needed to run the fleet will be 1.35E+09 MW·h per year, or
+4.87E+12 MJ.
+
+After accounting for the system efficiency of each turbine, the energy
+that will be availabe from each will be 1.33E+01 MJ per year. Dividing
+the total annual energy need of the electric vehicle fleet by the energy
+available from each turbine yields the number of turbines that will be
+needed: 3.66E+11.
+
+\hypertarget{chapter-7}{%
+\section{Chapter 7}\label{chapter-7}}
+
+\hypertarget{section-7}{%
+\subsection{7.1.}\label{section-7}}
+
+\textbf{\emph{Explain the difference between primary energy and end-use
+energy.}}
+
+Primary energy is the energy released by breaking chemical bonds in raw
+fuels, or the solar/wind/geothermal that is naturally available as
+renewable energy. End-use energy is the energy consumed by various
+applications after primary energy has been converted, transmitted, and
+distribution losses have been accounted for.
+
+\hypertarget{section-8}{%
+\subsection{7.4.}\label{section-8}}
+
+\textbf{\emph{Identify four ways that electrifying all energy and
+providing the electricity with 100 percent wind, water, and solar
+reduces end-use power demand. }}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Electric vehicles are more efficient than combustion vehicles, so they
+  need less energy to run.
+\item
+  In producing high temperature heat in industiral settings, electric
+  appliances are also far more efficient than current combustion-based
+  techniques, which decreases the end use demand.
+\item
+  End use demand is also decreased by using heat-pumps, which rely on
+  heat transfer to create comforable infoor temperatures, rather than
+  generating heat from fuel.
+\item
+  Using renewable sources eliminates the need for energy to mine,
+  transport and process fossil fuels, which decreases end-use demand
+\end{enumerate}
+
+\hypertarget{section-9}{%
+\subsection{7.10.}\label{section-9}}
+
+\textbf{\emph{If a wind farm produces \$50,000/y in annual revenue for
+30 years, what is the present value of that income, assuming a private
+discount rate of 4 percent? }}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# present\_val = future\_val * (1/(1+r)\^{}n)}
+\NormalTok{future\_val }\OperatorTok{=} \DecValTok{50\_000}
+\NormalTok{n }\OperatorTok{=} \DecValTok{30} \CommentTok{\# number of periods }
+\NormalTok{r }\OperatorTok{=} \FloatTok{0.04} \CommentTok{\# discount rate }
+\NormalTok{present\_val }\OperatorTok{=}\NormalTok{ future\_val }\OperatorTok{*}\NormalTok{ (}\DecValTok{1}\OperatorTok{/}\NormalTok{(}\DecValTok{1}\OperatorTok{+}\NormalTok{r)}\OperatorTok{**}\NormalTok{n)}
+\NormalTok{display(Markdown(}\SpecialStringTok{f"""}
+\SpecialStringTok{The present value of the income is  $}\SpecialCharTok{\{}\NormalTok{present\_val}\SpecialCharTok{:.0f\}}\SpecialStringTok{.}
+\SpecialStringTok{"""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+The present value of the income is \$15416.
+
+\hypertarget{section-10}{%
+\subsection{7.11.}\label{section-10}}
+
+\textbf{\emph{Estimate the cost per unit energy of a Pr = 5 MW nameplate
+capacity wind turbine with a capital cost of \$1,200/kW, a capacity
+factor of CF = 34 percent, an O\&M cost of \$30/kW-y, and a lifetime of
+30 years. Assume the discount rate is 3.5 percent, the construction time
+is 2 years, and the decommissioning cost is \$13/kW. Also assume
+transmission, distribution, downtime, and array losses are 10 percent.
+Hint: Construct a table like Table 7.9. }}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pr }\OperatorTok{=} \DecValTok{5000} \CommentTok{\# kw {-}\textgreater{} nameplate capacity }
+\NormalTok{P\_capital }\OperatorTok{=} \DecValTok{1200} \CommentTok{\# $/kw {-}\textgreater{} capital cost }
+\NormalTok{CF }\OperatorTok{=} \DecValTok{30}\OperatorTok{/}\DecValTok{100} \CommentTok{\# percent {-}\textgreater{} capacity factor }
+\NormalTok{OandM }\OperatorTok{=} \DecValTok{10} \CommentTok{\# $/kW/year {-}\textgreater{} O+M cost }
+\NormalTok{i }\OperatorTok{=} \DecValTok{3}\OperatorTok{/}\DecValTok{100} \CommentTok{\# percent {-}\textgreater{}  private discount rate}
+\NormalTok{T\_construct }\OperatorTok{=} \DecValTok{1} \CommentTok{\# year {-}\textgreater{} construction time }
+\NormalTok{F }\OperatorTok{=} \DecValTok{10} \CommentTok{\# $/kW {-}\textgreater{} decomissioning cost }
+\NormalTok{losses }\OperatorTok{=} \DecValTok{10}\OperatorTok{/}\DecValTok{100} \CommentTok{\# percent {-}\textgreater{} transmission, dist, and downtime losses }
+\NormalTok{T\_life }\OperatorTok{=} \DecValTok{30} \CommentTok{\# project lifetime }
+
+\NormalTok{T\_life\_arr }\OperatorTok{=}\NormalTok{ np.arange(}\DecValTok{1}\NormalTok{, T\_life}\OperatorTok{+}\DecValTok{1}\NormalTok{)}
+\NormalTok{i\_factor }\OperatorTok{=}\NormalTok{ (}\DecValTok{1} \OperatorTok{+}\NormalTok{ i )}\OperatorTok{**}\NormalTok{(T\_life\_arr)}
+\NormalTok{CRF }\OperatorTok{=}\NormalTok{( i }\OperatorTok{*}\NormalTok{ i\_factor ) }\OperatorTok{/}\NormalTok{ (i\_factor  }\OperatorTok{{-}} \DecValTok{1}\NormalTok{ )}
+
+\CommentTok{\# print(CRF, T\_life\_arr, len(CRF))}
+
+\CommentTok{\# energy available per year }
+\NormalTok{Et }\OperatorTok{=}\NormalTok{ Pr }\OperatorTok{*}\NormalTok{ CF }\OperatorTok{*}\NormalTok{ st\_year\_hours }\OperatorTok{*}\NormalTok{ (}\DecValTok{1} \OperatorTok{{-}}\NormalTok{ losses)}
+
+\CommentTok{\# presnet value of energy }
+\NormalTok{Et\_present }\OperatorTok{=}\NormalTok{ Et}\OperatorTok{/}\NormalTok{i\_factor}
+
+\CommentTok{\# costs}
+\NormalTok{A\_capital }\OperatorTok{=}\NormalTok{ P\_capital }\OperatorTok{*}\NormalTok{ CRF}
+\NormalTok{A\_decom }\OperatorTok{=}\NormalTok{ (F}\OperatorTok{/}\NormalTok{i\_factor)}\OperatorTok{*}\NormalTok{ CRF}
+\NormalTok{OM\_cost }\OperatorTok{=}\NormalTok{ [}\DecValTok{0}\NormalTok{] }\OperatorTok{+}\NormalTok{ [OandM }\OperatorTok{*}\NormalTok{ Pr]}\OperatorTok{*}\NormalTok{(T\_life }\OperatorTok{{-}} \DecValTok{1}\NormalTok{)}
+
+\NormalTok{costs }\OperatorTok{=}\NormalTok{ A\_capital }\OperatorTok{+}\NormalTok{ A\_decom }\OperatorTok{+}\NormalTok{ OM\_cost}
+
+\NormalTok{LCOE }\OperatorTok{=}\NormalTok{ (np.}\BuiltInTok{sum}\NormalTok{(costs}\OperatorTok{/}\NormalTok{i\_factor))}\OperatorTok{/}\NormalTok{(np.}\BuiltInTok{sum}\NormalTok{(Et\_present}\OperatorTok{/}\NormalTok{i\_factor))}
+
+\NormalTok{display(Markdown(}\SpecialStringTok{f"""}
+\SpecialStringTok{The levelized cost of energy is $}\SpecialCharTok{\{}\NormalTok{LCOE}\SpecialCharTok{:.3f\}}\SpecialStringTok{.}
+\SpecialStringTok{"""}\NormalTok{))}
+
+\CommentTok{\# print(CRF, Et, LCOE)}
+\end{Highlighting}
+\end{Shaded}
+
+The levelized cost of energy is \$0.006.
+
+\hypertarget{chapter-8}{%
+\section{Chapter 8}\label{chapter-8}}
+
+\hypertarget{section-11}{%
+\subsection{8.4.}\label{section-11}}
+
+\textbf{\emph{List four methods of changing the electric power system
+when instantaneous electric power generation plus storage cannot meet
+instantaneous demand during some times of the year.}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Over-generation of energy
+\item
+  Energy storage
+\item
+  A highly interconnected grid enabling long-distance transmission
+\item
+  Demand-response
+\end{enumerate}
+
+\hypertarget{section-12}{%
+\subsection{8.6.}\label{section-12}}
+
+\textbf{\emph{Why should bundling of wind, solar, geothermal, and
+hydroelectric power significantly help to match power demand on the grid
+with power supply?}}
+
+These renewable sources of energy often produce output at complementary
+times. For instance, the high pressure systems that occur when the sun
+is shining are often absent when the wind is blowing. Having a system
+where all sources are interconnected can smooth the supply curve, and
+ensure that when exess power is produced it can be stored.
+
+\hypertarget{section-13}{%
+\subsection{8.7.}\label{section-13}}
+
+\textbf{\emph{Calculate the number of heating degree days and cooling
+degree days over a four-day period relative to a reference temperature
+of 18 oC if the outdoor air temperatures on each day are --5ºC, 0ºC,
+30ºC, and 35ºC, respectively. }}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{temp1 }\OperatorTok{=} \OperatorTok{{-}}\DecValTok{5}
+\NormalTok{temp2 }\OperatorTok{=} \DecValTok{0} 
+\NormalTok{temp3 }\OperatorTok{=} \DecValTok{30} 
+\NormalTok{temp4 }\OperatorTok{=} \DecValTok{35}
+
+\NormalTok{ref }\OperatorTok{=} \DecValTok{18}
+\NormalTok{hdds }\OperatorTok{=}\NormalTok{ (ref }\OperatorTok{{-}}\NormalTok{ temp1) }\OperatorTok{+}\NormalTok{ (ref }\OperatorTok{{-}}\NormalTok{ temp2)}
+
+\NormalTok{cdds }\OperatorTok{=}\NormalTok{ (temp3 }\OperatorTok{{-}}\NormalTok{ ref) }\OperatorTok{+}\NormalTok{ (temp4 }\OperatorTok{{-}}\NormalTok{ ref)}
+
+\NormalTok{display(Markdown(}\SpecialStringTok{f"""}
+\SpecialStringTok{The number of heating degree days is }\SpecialCharTok{\{}\NormalTok{hdds}\SpecialCharTok{:.0f\}}\SpecialStringTok{ºC and the number of cooling degree days is }\SpecialCharTok{\{}\NormalTok{cdds}\SpecialCharTok{:.0f\}}\SpecialStringTok{ºC.}
+\SpecialStringTok{"""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+The number of heating degree days is 41ºC and the number of cooling
+degree days is 29ºC.
+
+\hypertarget{section-14}{%
+\subsection{8.10.}\label{section-14}}
+
+\textbf{\emph{What WWS technologies can be used to perform regulation
+services?}}
+
+Hydropwer, batteries, and storage from pumped hydropower, flywheel,
+compressed air, and gravitational storage with solid masses.
+
+\hypertarget{chapter-9}{%
+\section{Chapter 9}\label{chapter-9}}
+
+\hypertarget{section-15}{%
+\subsection{9.1.}\label{section-15}}
+
+\textbf{\emph{List four policy measures that could be implemented to
+encourage the expansion of WWS energy systems.}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Renewable portfolio standards requiring certain fraction of ppwer
+  generation to come from clean energy sources
+\item
+  Financial uncentives and laws for increasing energy efficiency and
+  reducing energy use
+\item
+  Laws requiring demand response
+\item
+  Feed-in tariffs that cover the difference between electricity
+  gemeration cost and wholesale electricity prices
+\end{enumerate}
+
+\hypertarget{section-16}{%
+\subsection{9.2.}\label{section-16}}
+
+\textbf{\emph{List four barriers that could slow the large-scale
+implementation of clean, renewable energy.}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Long term vested interests from current energy infrastructure
+\item
+  Zoning issues
+\item
+  Countries engaged in conflict
+\item
+  Countireis with substantial poverty
+\end{enumerate}
+
+\hypertarget{section-17}{%
+\subsection{9.3.}\label{section-17}}
+
+\textbf{\emph{What fossil-fuel-based technologies will likely take the
+longest to transition to electricity or electrolytic-hydrogen
+alternatives?}}
+
+Long haul airfraft will take the longest, estimated between between 2030
+and 2040, to transition as fuel cell sizes and efficiencis will need to
+improve
+
+\hypertarget{section-18}{%
+\subsection{9.4.}\label{section-18}}
+
+\textbf{\emph{If the cumulative anthropogenic carbon emissions at the
+end of 2018 were 2,155 Gt-CO2, and the limit to avoid 1.5 oC global
+warming is 2,400 Gt-CO2, by what year will global warming reach 1.5 oC
+if the anthropogenic emission rate from fossil-fuel combustion, cement
+manufacturing, and land use change is 40 Gt-CO2/y?}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{co2\_2018 }\OperatorTok{=} \DecValTok{2\_155} \CommentTok{\# Gt{-}CO2}
+\NormalTok{co2\_lim }\OperatorTok{=} \DecValTok{2\_400} \CommentTok{\# Gt{-}CO2 1.5ºC limit }
+\NormalTok{em\_rate }\OperatorTok{=} \DecValTok{40} \CommentTok{\# Gt{-}CO2 emitted / year }
+
+\NormalTok{co2\_remaining }\OperatorTok{=}\NormalTok{ co2\_lim }\OperatorTok{{-}}\NormalTok{ co2\_2018 }
+\NormalTok{years\_remaining }\OperatorTok{=}\NormalTok{ co2\_remaining}\OperatorTok{/}\NormalTok{ em\_rate }
+\NormalTok{year\_reached }\OperatorTok{=}\NormalTok{ years\_remaining }\OperatorTok{+} \DecValTok{2018}
+
+\NormalTok{display(Markdown(}\SpecialStringTok{f"""}
+\SpecialStringTok{The world will reach the 1.5º global warming limit about }\SpecialCharTok{\{}\NormalTok{years\_remaining}\SpecialCharTok{:.3f\}}\SpecialStringTok{ years from now, so in }\SpecialCharTok{\{}\NormalTok{year\_reached}\SpecialCharTok{:.0f\}}\SpecialStringTok{.}
+\SpecialStringTok{"""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+The world will reach the 1.5º global warming limit about 6.125 years
+from now, so in 2024.
+
+
+
+\end{document}
