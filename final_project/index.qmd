@@ -1,0 +1,163 @@
+---
+title: "Renewables Homework 3"
+format:
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
+  html:
+    code-fold: false
+    code-overflow: wrap
+jupyter: python3
+---
+
+```{python}
+
+import numpy as np
+import units as u
+import numpy as np
+from IPython.display import display, Markdown, Latex
+```
+
+# Main Project Goals 
+
+* Quantify energy consumed by one or all energy sectors in a country 
+  * Main sectors: electricity, trasnport, building heating/cooling, industry 
+*  Plan to replace current energy with WWS (today)
+   *  convert each fuel used in the industry to WWS electricity or heat 
+   *  percent of end-use consumed that should be supplied by each WWS tech => end use demand for each source of WWS (7.3)
+   *  concuct a resouce analysis (7.4)
+   *  determine number of devices needed for each technology [^1]
+   *  determine amount of spacing and footprint needed for each tech 
+
+## Additional calculations
+* determine amount of electricity, heat, cold, hydrogen storage needed 
+* transmission requirements 
+* capital cost for generation, storage, transmission 
+* levelized cost of energy 
+* mathcing demand with supply and storage 
+* changes in number of temp/permanent jobs 
+* changes in air pollition mortality/morbidity + cost saving 
+* changes in global warming cost savings 
+* change in teax consequence 
+* policies to make transition 
+
+
+[^1]: mean wind sped at hub height of an onshore/offshore location of interest, calc capacity factor of typical wind turbine, and determine number of turbines needed to get correct eenrgy levels 
+
+
+# Things to do 
+- [ ] select place of interest => Abuja, Lagos, Dakar, Accra, Nigeria as a whole
+- [ ]  determine energy use by sector in these places 
+
+  - seems like most data is available for nigeria as a whole...
+  - [ ] determine capacity factors for wind/solar in these places...
+
+
+
+# Data sources
+* [World Data](https://www.worlddata.info/africa/nigeria/energy-consumption.php)
+* [International Energy Agency](https://www.iea.org/articles/nigeria-energy-outlook)
+* [University or Abuja](https://iopscience.iop.org/article/10.1088/1755-1315/476/1/012087/pdf)
+* [World Bank Data](https://data.worldbank.org/indicator/EG.USE.ELEC.KH.PC?locations=NG)
+* [EnerData Consultancy](https://www.enerdata.net/estore/country-profiles/nigeria.html)
+
+
+# Calculations to figure out end use energy demand (before and after transition)
+- Table 7.6 -> 2050 end use energy demand 
+
+
+# Calculations for potential energy from renewable sources 
+Need to figure out how much energy is possible from a typical system given ambient conditions..., i.e., a resource analysis => 7.4 (can use these to check calculations and process)
+- Table 7.4: power available in wind, water, and solar worldwide 
+    - wind power => Jacobson and Archer 2012, Table 6.8 
+    - Hyroelectric => Jacobson 2009 
+    - Geothermal => Jacobson and Delucci 2011
+    - Solar => Table 5.3
+      - rooftop solar => Table 7.5
+    - Concentrated solar power => Jacobson 2009 
+
+## Wind 
+- wind speeds and their probability of occurence into a Rayleigh distribution. `Eq 6.4 - 6.6`
+  - Would be interested in the mean  wind speed? `Ex 6.2`
+
+- need to determine the power in the wind. 
+  - Instantaneous `Eq 6.10` 
+  - Over time, taking into account the rayleigh distribution `Eq 6.11`
+
+- Can use `Eq 6.12 - 6.13` to determine how wind speeds change with height, and therefore power changes -> for sizing turbines really...
+  - most turbines between 80m - 150m m above ground level 
+  - can also take into account whetehr wind speeds are faster at night than in the day, especially if pairing with solar power, and need to weigh the benefits against the cost of higher turbines 
+    - (interesting discussion of the physics of the atmosphereic boundary layer in any case  +  `Section 6.8`) 
+  - air pressure and density change with height, and can cause different power output at the high to low extent of a turbines blades => `Ex 6.6`
+
+- max power out from wind turbines => 59.3, Betz limit 
+  - due to the fact that wind cannot extract all the kinetic energy from air passing through i -> wind v downstream >=  wind v upstream 
+  - Discussed in `Eq 6.16 - 6.22` => rotor efficiency => how much power can be extracted from the wind 
+  - Tip speed ratio `Eq 6.23`
+
+- gross energy output (before losses) and power output `Eq 6.24 - 6.25` 
+
+  - capacity factor 
+    - can estimate after knowing wind turbine power curve `Fig 6.4a` and mean annual wind speed => `Table 6.2`
+    - can also use `Eq 6.28` which is a simple generalized equation
+
+  - turbine efficiency 
+  - mean annual power output  << rated power (nameplate capacity)
+  - mean annual  wind speed power << rated power of turbine 
+
+- losses 
+
+  - transmission and distribution losses => `Table 6.3`, 
+    - reduction in energy generation needed if transmission and distribution losses are omproved `Eq 6.30`
+
+  - downtime losses => 6 days of downtime on avg over a year 
+  - curtailmemt losses => need to ensure that storage is available to handle exess output => demand and storage calculation 
+  - array losses => how to calculate? but ideally want wind turbines to be distributed from each other..
+  - overall losses `Eq 6.31`, and some sample values 
+
+- spacing 
+
+  - installed power density, output power density and capacity factor of wind farms... `Eq 6.32 - 6.34`
+  - `Table 6.5` => # of turbines needed to convert us fleet, and amount that would need to be taken up  ‼️
+
+- wind resource available 
+
+  - `Table 6.6`, percent land with hiegher than 6.9 m/s wind speeds, Jacobson et al 2017, Archer and Jacobson 2005
+  
+{{< include _wind.qmd >}}
+
+  
+
+  
+
+
+
+## Solar
+```{python}
+# questions of capacity 
+E_panel = 0.22
+F1000 = 1000 * u.watt / u.m**2
+A = 1.5 * u.m**2
+
+capacity = E_panel * F1000 * A
+capacity 
+
+# questions of arrangement 
+v_panel = 40 * u.volt 
+n_panels = 12
+v_tot = v_panel * n_panels
+
+i_string = 5 * u.amp
+n_strings = 3
+i_tot = i_string * n_strings
+
+p_array = (v_tot * i_tot).to("watt")
+
+print(v_tot, i_tot, p_array)
+
+```
+
+## Hydro 
+
+## Geothermal 
