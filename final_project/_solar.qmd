@@ -83,8 +83,17 @@ Alternatives for determing solar radiation availability
 - [Information about types of irradiation data](https://globalsolaratlas.info/support/faq)
   - Resolution/ pixel size of the data
     - 9 arcsec (nominally 250 m) for solar resource data (GHI, DIF, GTI, DNI)
+      - what these irradiation values stand for: 
+        - GHI, Global Horizontal Irradiation
+        - DNI, Direct Normal Irradiation
+        - DIF, Diffuse Horizontal Irradiation
+        - not sure which i should be most concerened with? 
 - [Reading and visualizing Geotiff with python using georaster/ rasterio](https://towardsdatascience.com/reading-and-visualizing-geotiff-images-with-python-8dcca7a74510)
 - [Rasterio docs](https://rasterio.readthedocs.io/en/stable/)
+- [Could overlay a map of the states in the country, and calculate solar potential by state...](https://www.youtube.com/watch?v=VIr-pejky6E&t=1416s)
+  - [Rasterstats](https://pythonhosted.org/rasterstats/)
+  - [Moving average library?](https://pygis.io/docs/e_raster_window_operations.html)
+  - [Histograrm based image segmentation](https://www.youtube.com/watch?v=kIVk0IhDMwY&list=PLZsOBAyNTZwYx-7GylDo3LSYpSompzsqW&index=9)
 
 
 
