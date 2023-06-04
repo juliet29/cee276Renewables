@@ -24,7 +24,7 @@ from IPython.display import display, Markdown, Latex
     # when consider solar, should co-optimize solar 
 
 
-
+# extras 
 # # 6.5, the Rayleigh distribytion gives the probability of observing a given wind speed, and is the Weibull frequency distribution inserting k = 2
 # f(v) = (2*v/c**2) * np.exp( - (v/c)**2)
 
@@ -41,8 +41,6 @@ Assume rated power of turbine is equal to the mean wind speed?
 ```{python}
 # determine the available resouce based on wind speed...
 
-# power availability annualized => Eq 6.11
-
 ## --- atmosphereic values # TODO get real values 
 V_m = _ # m/s # mean wind speed, will get this from a data source for different areas.
 rho = 1.23 # kg/m^3 # air density, should be a function of turbine height 
@@ -56,6 +54,7 @@ A_t = np.pi * D_t**2 / 4
 
 # 6.11, assuming a Rayleigh distribution of wind speeds, the mean power over time is 
 # P_m = 1/2 * rho * A_t * np.sum(f(v) * v**3 )
+# where does this take into acount time???
 P_m = (6/np.pi) * (0.5) * rho * A_t * V_m**3
 
 
@@ -81,10 +80,14 @@ H = 8760 # non leap year hours in  a day
 P_t = P_r * CF
 E_t = P_t * H 
 
+
+
 # -- can check that turbine efficiency make sense 
 # rotor efficiencies ~ turbine efficincy 
 C_p = 0.45 # section 6.6.5
 TE = P_t/ P_m # < C_p 
+
+
 
 # -- observe size of the areas with high wind resource and determine max number of turbines could put there 
 
@@ -119,8 +122,7 @@ L_t = 100 * (1 - (pL_td * pL_d * pL_c * pL_a   ) )
 
 P_rf_after_losses = P_rf * (1 - L_t)
 
-# determine how much of the energy need this makes up, and examine under different scenarios..
+# determine how much of the energy need this makes up, and examine under different scenarios.. (min, max => cheapest, most expensive...)
+# TODO turn into function after doing some studies..
 ```
 
-
-### Determine number of turbines needed based on 

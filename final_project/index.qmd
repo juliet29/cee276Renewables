@@ -134,6 +134,8 @@ Need to figure out how much energy is possible from a typical system given ambie
 
 
 ## Solar
+
+{{< include _solar.qmd >}}
 ```{python}
 # questions of capacity 
 E_panel = 0.22

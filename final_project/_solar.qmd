@@ -1,0 +1,110 @@
+```{python}
+import numpy as np
+import units as u
+import numpy as np
+from IPython.display import display, Markdown, Latex
+
+```
+
+### Evaluate a location based on standardized values 
+TODO: should also include analysis where co-locate wind and solar farms 
+
+```{python}
+# determine the available resouce based on solar resource
+
+# power availability annualized 
+
+
+
+
+```
+
+### Given an area that provides signifcant solaer resources, design a farm that maximizes output 
+```{python}
+
+# standard test condition temp = 25ºC
+D_f = 0.864 # derating factor, product of correction factors for additional processes affecting solar output, Table 5.2 
+F_cur = _ # W/m^2 current solar flux normal to the panel 
+
+
+# -- correcting for cell temperature 
+
+T_a = _ # K / ºC, air temperature the panel is exposed to 
+w = _ # m/s, wind speed panel is exposed to 
+# 5.9, cell temperature, empirical so units do not eqate 
+T_c = T_a + 0.32 * (F_cur/(8.91 + 2*w))
+
+b_ref = 0.0025 # / K, temperature coefficient 
+T_th = 55 # K, threshold temeprature 
+T_ref = 298.15 # K, reference temperature 
+# 5.8, correction for cell temperature 
+C_temp = 1 - b_ref * np.max( np.min(T_c - T_ref, T_th ), 0 )
+
+
+
+# --- current solar flux to panels 
+F_diff = _ # section 5.3
+F_dir = _ # section 5.3 
+
+
+theta_s_air = _ # is this location dependent? 
+
+# 5.20, total downward solar flux to panel lying horizonatlly 
+F_cur = F_diff + np.cos(theta_s_air)*F_dir
+
+
+# From Fig 5.9, can see that 1 axis tracking provides most significant increase in benefits over just horizantal 
+    # (but how much energy does this consume)?
+
+
+
+# -- finally calculate power out from a panel ...
+E_panel = _ # solar panel efficiency obtained under standard test conditions 
+A_panel = _ # m^2, surface area of the panel 
+# 5.7 actual AC power output from a solar panel at a given time 
+# P_ac = p_mpp_stc * C_temp * D_f / F_1000
+P_ac = F_cur * A_panel * E_panel * C_temp * D_f
+
+
+# need to consider arrays and panels! 
+# need to consider possibility of roof top solar!
+
+
+
+
+
+
+```
+Alternatives for determing solar radiation availability 
+- [Arcgis Pro](https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/modeling-solar-radiation.htm)
+- [NREL has maps available for the US ](https://www.nrel.gov/gis/solar-resource-maps.html)
+- [RE data explorer has what i need](https://www.re-explorer.org/re-data-explorer/data-library/layers)
+- [Global solar atlas](https://globalsolaratlas.info/download/nigeria)
+- [Information about types of irradiation data](https://globalsolaratlas.info/support/faq)
+  - Resolution/ pixel size of the data
+    - 9 arcsec (nominally 250 m) for solar resource data (GHI, DIF, GTI, DNI)
+- [Reading and visualizing Geotiff with python using georaster/ rasterio](https://towardsdatascience.com/reading-and-visualizing-geotiff-images-with-python-8dcca7a74510)
+- [Rasterio docs](https://rasterio.readthedocs.io/en/stable/)
+
+
+
+###  Determine the available solar energy to the country after accounting for losses with this set up 
+```{python}
+
+
+import rasterio
+
+
+```
+
+```{python}
+
+```
+
+```{python}
+dni_path = "data/Nigeria_AvgDailyTotals_GlobalSolarAtlas_GEOTIFF/DNI.tif"
+dataset = rasterio.open(dni_path)
+```
+```{python}
+dataset.name
+```
