@@ -94,6 +94,9 @@ Alternatives for determing solar radiation availability
   - [Rasterstats](https://pythonhosted.org/rasterstats/)
   - [Moving average library?](https://pygis.io/docs/e_raster_window_operations.html)
   - [Histograrm based image segmentation](https://www.youtube.com/watch?v=kIVk0IhDMwY&list=PLZsOBAyNTZwYx-7GylDo3LSYpSompzsqW&index=9)
+  - [Nigeria administrative boundaries, world bank data](https://datacatalog.worldbank.org/search/dataset/0039368)
+    - [that is pulled from here](https://data.humdata.org/dataset/cod-ab-nga)
+- [Calculate areas of shape files](https://www.youtube.com/watch?v=efRGHsv7cJs)
 
 
 
