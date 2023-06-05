@@ -58,6 +58,7 @@ from IPython.display import display, Markdown, Latex
 # Data sources
 * [World Data](https://www.worlddata.info/africa/nigeria/energy-consumption.php)
 * [International Energy Agency](https://www.iea.org/articles/nigeria-energy-outlook)
+  * [iea report on africa 2019](https://iea.blob.core.windows.net/assets/d7f16c12-98c4-4582-bc43-b8f4d933a516/AEO2019_NIGERIA.pdf)
 * [University or Abuja](https://iopscience.iop.org/article/10.1088/1755-1315/476/1/012087/pdf)
 * [World Bank Data](https://data.worldbank.org/indicator/EG.USE.ELEC.KH.PC?locations=NG)
 * [EnerData Consultancy](https://www.enerdata.net/estore/country-profiles/nigeria.html)
