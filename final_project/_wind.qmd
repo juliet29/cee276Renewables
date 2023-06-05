@@ -95,7 +95,7 @@ TE = P_t/ P_m # < C_p
 # rho_i = (P_r * n) / A_s
 
 A_s = _ # m, area of space with V_m 
-rho_i_compare = 20.5 # Table 6.4, mean installed power density of wind farms outside europe 
+rho_i_compare = 20.5 # W/m2 Table 6.4, mean installed power density of wind farms outside europe 
 n =  (rho_i_compare/ P_r) * A_s 
 
 # calculate power output of a given wind farm 
