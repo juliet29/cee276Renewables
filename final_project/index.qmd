@@ -61,6 +61,7 @@ from IPython.display import display, Markdown, Latex
 * [University or Abuja](https://iopscience.iop.org/article/10.1088/1755-1315/476/1/012087/pdf)
 * [World Bank Data](https://data.worldbank.org/indicator/EG.USE.ELEC.KH.PC?locations=NG)
 * [EnerData Consultancy](https://www.enerdata.net/estore/country-profiles/nigeria.html)
+* [KPMG](https://kpmg.com/ng/en/home/insights/2022/06/power-sector-updates.html)
 
 
 # Calculations to figure out end use energy demand (before and after transition)
