@@ -1,31 +1,9 @@
-# Background
 
-This study focuses primarily on evaluatig the possibility of using solar and wind turbine energy. I began by calculating the renewable resources that would be available in each state. I used data from (**) to determine the average wind speed, temperature, and solar flux (direct normal irradiation **), available in each of the 36 Nigerian states. The aim was to identify which states had the greatest potential for producing renewable energy. After identifying these states, I calculated the amount of energy that could be generated from solar and wind farms in these locations, as well as the number of panels/turbines that would be needed, and the amount of space that would be taken up. I structured my calculations in such that I could evaluate how land used and items needed would change with different configurations. 
-
-```{python}
-import numpy as np
-# import units as u
-import numpy as np
-import pandas as pd
-
-import rasterio
-from rasterio.plot import show_hist, show
-import geopandas as gpd
-import rasterstats
-from shapely.geometry import shape
-
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-from matplotlib import pyplot as plt
-
-```
-
-## Calculate Current Energy Demand 
-TODO: use data from sources 
-
-
+# Renewable Resource Analysis 
 
 ## Calculate Available Renewable Resource 
+
+This study focuses primarily on evaluatig the possibility of using solar and wind turbine energy. I began by calculating the renewable resources that would be available in each state. I used data from (**) to determine the average wind speed, temperature, and solar flux (direct normal irradiation **), available in each of the 36 Nigerian states. The aim was to identify which states had the greatest potential for producing renewable energy. After identifying these states, I calculated the amount of energy that could be generated from solar and wind farms in these locations, as well as the number of panels/turbines that would be needed, and the amount of space that would be taken up. I structured my calculations in such that I could evaluate how land used and items needed would change with different configurations. 
 
 Using satellite data from .., I am able to see the renewable resouce availability at relatively high resolutions of about 250 m2. In theory, this allows me to pinpoint the exact locations where solar and wind turbines might be located. However, given the high amounts of data, and the discrpancy in labelling between the inputs this would be computationally intesnive, and is left for another study. Instead, I use the state administrative boundaries as a unifying region with which to evaluate all the data I am bringing in. In particular, I use:
     - Wind Speed (m/s): Used to to calculate the power in the wind that is available to wind turbines 
@@ -43,7 +21,7 @@ Using satellite data from .., I am able to see the renewable resouce availabilit
 <!-- TODO: commentary on how different the data is, and how much of a simpliciation are making  => maybe even plot distributions of the data... for states vs raw data => if means are lower, we are underestimating the available power... -->
 
 
-# Calculate Potential Solar Contribution 
+## Calculate Potential Solar Contribution 
 
 
 I performed the following calculations in the `calculate_power_panel()` function, which, by passing in the solar flux, ambient temperature and wind speed values averaged over the area of each state, enabled me to calculate the average AC power output of a single panel in each state.
@@ -88,7 +66,7 @@ The results of perfoaming these calculations with standard values to descibe the
 ***TODO***
 
 
-# Calculate Potential Wind Contribution 
+## Calculate Potential Wind Contribution 
 I performed the following calculations in the `calculate_power_turbine()` function. I passed in the average wind speed in a given state $V_m$, and calculated the potential wind power to be generated from a single turbine exposed to the ambient conditions in that state.
 
 I assumed standard constant values for the air density, $ρ = 1.23 \si{kg/m^3}$, and the diameter of the wind turbine $D_t = 127 \si{m}$. I calculated the swept area of the turbine, $A_t$ (m^2), using @eq-6.7 (Eq 6.7).
