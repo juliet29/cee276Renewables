@@ -1,0 +1,54 @@
+# Background
+
+This study focuses primarily on evaluatig the possibility of using solar and wind turbine energy. I began by calculating the renewable resources that would be available in each state. I used data from (**) to determine the average wind speed, temperature, and solar flux (direct normal irradiation **), available in each of the 36 Nigerian states. The aim was to identify which states had the greatest potential for producing renewable energy. After identifying these states, I calculated the amount of energy that could be generated from solar and wind farms in these locations, as well as the number of panels/turbines that would be needed, and the amount of space that would be taken up. I structured my calculations in such that I could evaluate how land used and items needed would change with different configurations. 
+
+```{python}
+import numpy as np
+# import units as u
+import numpy as np
+import pandas as pd
+
+import rasterio
+from rasterio.plot import show_hist, show
+import geopandas as gpd
+import rasterstats
+from shapely.geometry import shape
+
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from matplotlib import pyplot as plt
+
+```
+
+## Calculate Current Energy Demand 
+TODO: use data from sources 
+
+
+
+## Calculate Available Renewable Resource 
+
+Using satellite data from .., I am able to see the renewable resouce availability at relatively high resolutions of about 250 m2. In theory, this allows me to pinpoint the exact locations where solar and wind turbines might be located. However, given the high amounts of data, and the discrpancy in labelling between the inputs this would be computationally intesnive, and is left for another study. Instead, I use the state administrative boundaries as a unifying region with which to evaluate all the data I am bringing in. In particular, I use:
+    - Wind Speed (m/s): Used to to calculate the power in the wind that is available to wind turbines 
+    - Wind Speed at Surface (TODO)
+    - Temperature (ºC): Average temperatures the panels will be exposed to 
+    - Solar Flux: Available energy for solar panels 
+
+```{python}
+
+
+states_path = "data/states/nga_admbnda_adm1_osgof_20161215.shp"
+states = gpd.read_file(states_path)
+
+data_averages = {}
+for name, path in data_paths.items():
+    data_averages[name] = pd.read_csv(f"clean_data/{name}.csv", index_col=0)
+
+# TODO: 2x4 subplots for resources in each states (wind, surface_wind, flux, temperature, )
+
+
+```
+TODO: commentary on how different the data is, and how much of a simpliciation are making  => maybe even plot distributions of the data... for states vs raw data => if means are lower, we are underestimating the available power...
+
+# Calculate Solar Contribution 
+
+To calculate the contribution from solar panels, I calculated the cell temperature, T_c, that each solar panel in a given state would be exposed to using (Eq. 5.7). I then computed 
