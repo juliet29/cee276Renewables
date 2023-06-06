@@ -31,17 +31,9 @@ Using satellite data from .., I am able to see the renewable resouce availabilit
     - Wind Speed (m/s): Used to to calculate the power in the wind that is available to wind turbines 
     - Wind Speed at Surface (TODO)
     - Temperature (ºC): Average temperatures the panels will be exposed to 
-    - Solar Flux: Available energy for solar panels 
+    - Solar Flux: Available energy for solar panels * should do this with global horizantal? 
 
 ```{python}
-
-
-# states_path = "data/states/nga_admbnda_adm1_osgof_20161215.shp"
-# states = gpd.read_file(states_path)
-
-# data_averages = {}
-# for name, path in data_paths.items():
-#     data_averages[name] = pd.read_csv(f"clean_data/{name}.csv", index_col=0)
 
 # TODO: 2x4 subplots for resources in each states (wind, surface_wind, flux, temperature, )
 
@@ -51,8 +43,94 @@ Using satellite data from .., I am able to see the renewable resouce availabilit
 <!-- TODO: commentary on how different the data is, and how much of a simpliciation are making  => maybe even plot distributions of the data... for states vs raw data => if means are lower, we are underestimating the available power... -->
 
 
-# Calculate Solar Contribution 
+# Calculate Potential Solar Contribution 
 
-To calculate the contribution from solar panels, I calculated the cell temperature, T_c, that each solar panel in a given state would be exposed to using `Eq. 5.7`. I then computed C_temp, the correction for the cell temperature `Eq. 5.8`, using a temperature coefficient of b_ref = 0.00... The AC power, P_ac, from each cell was given by `Eq 5.7`.  I used a standard derating factor, solar panel efficiency, and area (TODO: make table). All of these calculations were carried out in the `calculate_power_panel()` function, which, by passing in the solar flux, ambient temperature and wind speed values averaged over the area of each state, enabled me to calculate the average AC power output of a single panel in each state.
 
-In another function, `calc_num_panels()`, I calculated the potential power output of solar panels. This function takes in `p_land`, or percentage of land, and `num_states` or number of states as inputs. I determine which states have the highest average power ouput for a single solar panel, and I decide to place panels in these states, up to `num_states`. Within each state, I calculate the percentage of land that will be available for solar panels using `p_land`. I then use the area of the input panels to determine how many panels can be placed in this available area. I multiply the resulting number of panels by the potential power output of a single panel in the state to get the average power ouput. To get the average total energy, I multiply the power by 8760 hours in a year. 
+I performed the following calculations in the `calculate_power_panel()` function, which, by passing in the solar flux, ambient temperature and wind speed values averaged over the area of each state, enabled me to calculate the average AC power output of a single panel in each state.
+
+To calculate the contribution from solar panels, I calculated the cell temperature, $T_c$, that each solar panel in a given state would be exposed to using @eq-5.9, which is taken from the course text, @jacobson100CleanRenewable2020a Eq 5.9. Unless otherwise stated, all equations are referenced from the course text. 
+$$ 
+T_c = T_a + 0.32 * (F_{cur}/(8.91 + 2*w))
+$$ {#eq-5.9}
+
+I then computed $C_temp$, the correction for the cell temperature @eq-5.8, 
+$$ 
+C_{temp} = 1 - b_{ref} * \max\{ \min \{T_c - T_{ref}, T_{th} \}, 0 \} 
+$$ {#eq-5.8}
+
+The AC power, $P_ac$, from each cell was given by @eq-5.7.  
+$$ 
+ P_{ac} = F_{cur} * A_{panel} * E_{panel} * C_{temp} * D_f
+$$ {#eq-5.7}
+
+I used a standard values taken from the text for all constant values, see @tbl-solar.
+
+| Equation #  | Term           | Meaning                                        | Value  | Reference             |
+|-------------|----------------|------------------------------------------------|--------|-----------------------|
+| **@eq-5.9** | **$T_c$**      | **Cell temperature**                           |        | **Jacobson Eq. 5.9**  |
+| @eq-5.9     | $T_a$          | Ambient temperature (ºC)                       | -      | Arcsolar GIS*         |
+| @eq-5.9     | $F_{cur}$      | Solar flux incident on panel (W/m2)            | -      | Arcsolar GIS*         |
+| @eq-5.9     | $w$            | Wind speed (m/s)                               | -      | NOAA*                 |
+| **@eq-5.8** | **$C_{temp}$** | **Temperature correction **                    |        | **Jacobson Eq. 5.8**  |
+| @eq-5.8     | $b_{ref}$      | Temperature coefficient (1/K)                  | 0.0025 | Jacobson Section..    |
+| @eq-5.8     | $T_{ref}$      | Reference temperature (K)                      | 298.15 | Jacobson Section..    |
+| @eq-5.8     | $T_{th}$       | Threshold temperature (K)                      | 55     | Jacobson Section..    |
+| **@eq-5.7** | **$P_ac$**     | **Realistic AC power output of a solar cell ** |        | **Jacobson Eq. 5.7**  |
+| @eq-5.7     | $A_{panel} $     | Solar panel area (m2)                          | 1.5    | Jacobson Example 5.2  |
+| @eq-5.7     | $E_{panel} $     | Solar panel efficiency                         | 0.18   | Jacobson Example 5.2  |
+| @eq-5.7     | $D_f $           | Derating factor                                | 0.864  | Jacobson Table 5.2    |
+: Terms used in equations for calculating solar power availability  {#tbl-solar}
+
+In another function, `calc_num_panels()`, I calculated a realistic value for the potential contribution of solar to the grid, assuming limits on land, and aiming to place the panels in the states with the highest potential. This function takes in `p_land`, or percentage of land, and `num_states` or number of states as inputs. I determine which states have the highest average power ouput for a single solar panel, and I decide to place panels in these states, up to `num_states`. Within each state, I calculate the percentage of land that will be available for solar panels using `p_land`. I then use the area of the input panels to determine how many panels can be placed in this available area. I multiply the resulting number of panels by the potential power output of a single panel in the state to get the average power ouput. To get the average total energy, I multiply the power by 8760 hours in a year. 
+
+The results of perfoaming these calculations with standard values to descibe the solar panels, and assuming `p_land` = 0.02, and `num_states` = 2, are given in the table below. 
+
+***TODO***
+
+
+# Calculate Potential Wind Contribution 
+I performed the following calculations in the `calculate_power_turbine()` function. I passed in the average wind speed in a given state $V_m$, and calculated the potential wind power to be generated from a single turbine exposed to the ambient conditions in that state.
+
+I assumed standard constant values for the air density, $ρ = 1.23 \si{kg/m^3}$, and the diameter of the wind turbine $D_t = 127 \si{m}$. I calculated the swept area of the turbine, $A_t$ (m^2), using @eq-6.7 (Eq 6.7).
+$$ 
+   A_t = π * D_t^2 / 4
+$$ {#eq-6.7}
+
+I then calculated the power available in the wind, $P_m$ (W), using the average wind speed in a given state, $V_m$ and @eq-6.11 (Eq 6.11)
+$$ 
+   P_m = (6/ π) * (0.5) * rho * A_t * V_m^3
+$$ {#eq-6.11}
+
+Once I had $P_m$ in each state, I determined what would be an appropriate power rating, $P_r$ for a turbine in that state by rounding the value of $P_m$ up to the next 500. I then calculated the capacity factor for a turbine with this rating using @eq-6.28 (Eq 6.28).
+$$ 
+   CF = 0.087 * V_m - ((P_r)/(D_t^2))
+$$ {#eq-6.28}
+
+I then calculated the expected power from a single turbine in a given state by multiplying the capacity factor by the rated power in @eq-6.24 (Eq. 6.24).
+$$ 
+   P_t = P_r * CF
+$$ {#eq-6.24}
+
+
+I accounted for losses that would occur in the system due to curtailment using the following equations,  @eq-6.31 and @eq-6.31b (Eq 6.31). The values of the losses I used are described in @tbl-wind-losses.
+$$ 
+  L_t = (1 - (p_{L_td} * p_{L_d} * p_{L_c} * p_{L_a} ))
+$$ {#eq-6.31}
+
+$$ 
+  P_{t \ after \ losses} = P_t * (1 - L_t)
+$$ {#eq-6.31b}
+
+| Variable   | Loss Type                          | Value  | Reference                                       |
+|------------|------------------------------------|--------|-------------------------------------------------|
+| $p_{L_td}$    | Transmission and distribution loss | 16.1   | @jacobson100CleanRenewable2020a Table 6.3       |
+| $p_{L_d}$     | Downtime loss                      | 1.6    | @jacobson100CleanRenewable2020a Section 6.6.6.2 |
+| $p_{L_c}$     | Curtailment loss                   | 0      | Assume storage is available                     |
+| $p_{L_a}$     | Array loss                         | 0.2    | @jacobson100CleanRenewable2020a Figure 6.25b    |
+: Values of losses used in calculating turbine power  {#tbl-wind-losses}
+
+To calculate the potential contribution of wind energy to the grid, I followed a similar procedure to what was described in the previous section. I passed in a percentage of land `p_land`, and desired `num_states` into `calc_num_states` to determine how much energy could be produced under reasonable limits of land use. I determined how many wind turbines could be realistically placed on this land using an installed power density of $19.8 \si{W/m^2}$ which was refrenced from Table 6.4 in @jacobson100CleanRenewable2020a. This is a value taken from a study of onshore wind turbines in Europe. 
+
+The results of perfoaming these calculations with standard values to descibe the solar panels, and assuming `p_land` = 0.02, and `num_states` = 2, are given in the table below. 
+
+**TODO: calculate spacing and footing**

@@ -8,8 +8,10 @@ format:
     number-sections: true
     colorlinks: true
   html:
-    code-fold: false
+    code-fold: true 
     code-overflow: wrap
+    toc: true
+    number-sections: true
 jupyter: python3
 ---
 
