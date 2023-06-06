@@ -1,6 +1,7 @@
 ---
 title: "Final Project"
 author: Juliet Nwagwu Ume-Ezeoke
+pdf-engine: pdflatex
 format:
   pdf:
     toc: true

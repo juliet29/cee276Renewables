@@ -36,19 +36,23 @@ Using satellite data from .., I am able to see the renewable resouce availabilit
 ```{python}
 
 
-states_path = "data/states/nga_admbnda_adm1_osgof_20161215.shp"
-states = gpd.read_file(states_path)
+# states_path = "data/states/nga_admbnda_adm1_osgof_20161215.shp"
+# states = gpd.read_file(states_path)
 
-data_averages = {}
-for name, path in data_paths.items():
-    data_averages[name] = pd.read_csv(f"clean_data/{name}.csv", index_col=0)
+# data_averages = {}
+# for name, path in data_paths.items():
+#     data_averages[name] = pd.read_csv(f"clean_data/{name}.csv", index_col=0)
 
 # TODO: 2x4 subplots for resources in each states (wind, surface_wind, flux, temperature, )
 
 
 ```
-TODO: commentary on how different the data is, and how much of a simpliciation are making  => maybe even plot distributions of the data... for states vs raw data => if means are lower, we are underestimating the available power...
+
+<!-- TODO: commentary on how different the data is, and how much of a simpliciation are making  => maybe even plot distributions of the data... for states vs raw data => if means are lower, we are underestimating the available power... -->
+
 
 # Calculate Solar Contribution 
 
-To calculate the contribution from solar panels, I calculated the cell temperature, T_c, that each solar panel in a given state would be exposed to using (Eq. 5.7). I then computed 
+To calculate the contribution from solar panels, I calculated the cell temperature, T_c, that each solar panel in a given state would be exposed to using `Eq. 5.7`. I then computed C_temp, the correction for the cell temperature `Eq. 5.8`, using a temperature coefficient of b_ref = 0.00... The AC power, P_ac, from each cell was given by `Eq 5.7`.  I used a standard derating factor, solar panel efficiency, and area (TODO: make table). All of these calculations were carried out in the `calculate_power_panel()` function, which, by passing in the solar flux, ambient temperature and wind speed values averaged over the area of each state, enabled me to calculate the average AC power output of a single panel in each state.
+
+In another function, `calc_num_panels()`, I calculated the potential power output of solar panels. This function takes in `p_land`, or percentage of land, and `num_states` or number of states as inputs. I determine which states have the highest average power ouput for a single solar panel, and I decide to place panels in these states, up to `num_states`. Within each state, I calculate the percentage of land that will be available for solar panels using `p_land`. I then use the area of the input panels to determine how many panels can be placed in this available area. I multiply the resulting number of panels by the potential power output of a single panel in the state to get the average power ouput. To get the average total energy, I multiply the power by 8760 hours in a year. 

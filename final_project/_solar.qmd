@@ -97,6 +97,8 @@ Alternatives for determing solar radiation availability
   - [Nigeria administrative boundaries, world bank data](https://datacatalog.worldbank.org/search/dataset/0039368)
     - [that is pulled from here](https://data.humdata.org/dataset/cod-ab-nga)
 - [Calculate areas of shape files](https://www.youtube.com/watch?v=efRGHsv7cJs)
+- [plotting in shape files based on values](https://www.youtube.com/watch?v=IdxL5NZ7h_c)
+- [global wind atlas](https://globalwindatlas.info/en/area/Nigeria?download=print)
 
 
 

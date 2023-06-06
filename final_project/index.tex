@@ -49,6 +49,46 @@
   \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
@@ -149,7 +189,7 @@
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, interior hidden, boxrule=0pt, frame hidden, enhanced, breakable, borderline west={3pt}{0pt}{shadecolor}]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, sharp corners, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, breakable, enhanced, interior hidden]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -213,6 +253,107 @@ income, cities in Nigeria should focus on combining efficient, electic
 public transport and freight with electric last-mile shared vehicles,
 which may look more along the lines of ke-ke napeps (three-wheeled
 vehicles) and e-bikes than automobiles.
+
+\hypertarget{background}{%
+\section{Background}\label{background}}
+
+This study focuses primarily on evaluatig the possibility of using solar
+and wind turbine energy. I began by calculating the renewable resources
+that would be available in each state. I used data from (\textbf{) to
+determine the average wind speed, temperature, and solar flux (direct
+normal irradiation }), available in each of the 36 Nigerian states. The
+aim was to identify which states had the greatest potential for
+producing renewable energy. After identifying these states, I calculated
+the amount of energy that could be generated from solar and wind farms
+in these locations, as well as the number of panels/turbines that would
+be needed, and the amount of space that would be taken up. I structured
+my calculations in such that I could evaluate how land used and items
+needed would change with different configurations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\CommentTok{\# import units as u}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+
+\ImportTok{import}\NormalTok{ rasterio}
+\ImportTok{from}\NormalTok{ rasterio.plot }\ImportTok{import}\NormalTok{ show\_hist, show}
+\ImportTok{import}\NormalTok{ geopandas }\ImportTok{as}\NormalTok{ gpd}
+\ImportTok{import}\NormalTok{ rasterstats}
+\ImportTok{from}\NormalTok{ shapely.geometry }\ImportTok{import}\NormalTok{ shape}
+
+\ImportTok{import}\NormalTok{ plotly.graph\_objects }\ImportTok{as}\NormalTok{ go}
+\ImportTok{from}\NormalTok{ plotly.subplots }\ImportTok{import}\NormalTok{ make\_subplots}
+\ImportTok{from}\NormalTok{ matplotlib }\ImportTok{import}\NormalTok{ pyplot }\ImportTok{as}\NormalTok{ plt}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{calculate-current-energy-demand}{%
+\subsection{Calculate Current Energy
+Demand}\label{calculate-current-energy-demand}}
+
+TODO: use data from sources
+
+\hypertarget{calculate-available-renewable-resource}{%
+\subsection{Calculate Available Renewable
+Resource}\label{calculate-available-renewable-resource}}
+
+Using satellite data from .., I am able to see the renewable resouce
+availability at relatively high resolutions of about 250 m2. In theory,
+this allows me to pinpoint the exact locations where solar and wind
+turbines might be located. However, given the high amounts of data, and
+the discrpancy in labelling between the inputs this would be
+computationally intesnive, and is left for another study. Instead, I use
+the state administrative boundaries as a unifying region with which to
+evaluate all the data I am bringing in. In particular, I use: - Wind
+Speed (m/s): Used to to calculate the power in the wind that is
+available to wind turbines - Wind Speed at Surface (TODO) - Temperature
+(ºC): Average temperatures the panels will be exposed to - Solar Flux:
+Available energy for solar panels
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# states\_path = "data/states/nga\_admbnda\_adm1\_osgof\_20161215.shp"}
+\CommentTok{\# states = gpd.read\_file(states\_path)}
+
+\CommentTok{\# data\_averages = \{\}}
+\CommentTok{\# for name, path in data\_paths.items():}
+\CommentTok{\#     data\_averages[name] = pd.read\_csv(f"clean\_data/\{name\}.csv", index\_col=0)}
+
+\CommentTok{\# }\AlertTok{TODO}\CommentTok{: 2x4 subplots for resources in each states (wind, surface\_wind, flux, temperature, )}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{calculate-solar-contribution}{%
+\section{Calculate Solar
+Contribution}\label{calculate-solar-contribution}}
+
+To calculate the contribution from solar panels, I calculated the cell
+temperature, T\_c, that each solar panel in a given state would be
+exposed to using \texttt{Eq.\ 5.7}. I then computed C\_temp, the
+correction for the cell temperature \texttt{Eq.\ 5.8}, using a
+temperature coefficient of b\_ref = 0.00\ldots{} The AC power, P\_ac,
+from each cell was given by \texttt{Eq\ 5.7}. I used a standard derating
+factor, solar panel efficiency, and area (TODO: make table). All of
+these calculations were carried out in the
+\texttt{calculate\_power\_panel()} function, which, by passing in the
+solar flux, ambient temperature and wind speed values averaged over the
+area of each state, enabled me to calculate the average AC power output
+of a single panel in each state.
+
+In another function, \texttt{calc\_num\_panels()}, I calculated the
+potential power output of solar panels. This function takes in
+\texttt{p\_land}, or percentage of land, and \texttt{num\_states} or
+number of states as inputs. I determine which states have the highest
+average power ouput for a single solar panel, and I decide to place
+panels in these states, up to \texttt{num\_states}. Within each state, I
+calculate the percentage of land that will be available for solar panels
+using \texttt{p\_land}. I then use the area of the input panels to
+determine how many panels can be placed in this available area. I
+multiply the resulting number of panels by the potential power output of
+a single panel in the state to get the average power ouput. To get the
+average total energy, I multiply the power by 8760 hours in a year.
 
 
 
