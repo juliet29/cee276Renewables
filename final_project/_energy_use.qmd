@@ -61,10 +61,6 @@ I used a standard values taken from the text for all constant values, see @tbl-s
 
 In another function, `calc_num_panels()`, I calculated a realistic value for the potential contribution of solar to the grid, assuming limits on land, and aiming to place the panels in the states with the highest potential. This function takes in `p_land`, or percentage of land, and `num_states` or number of states as inputs. I determine which states have the highest average power ouput for a single solar panel, and I decide to place panels in these states, up to `num_states`. Within each state, I calculate the percentage of land that will be available for solar panels using `p_land`. I then use the area of the input panels to determine how many panels can be placed in this available area. I multiply the resulting number of panels by the potential power output of a single panel in the state to get the average power ouput. To get the average total energy, I multiply the power by 8760 hours in a year. 
 
-The results of perfoaming these calculations with standard values to descibe the solar panels, and assuming `p_land` = 0.02, and `num_states` = 2, are given in the table below. 
-
-***TODO***
-
 
 ## Calculate Potential Wind Contribution 
 I performed the following calculations in the `calculate_power_turbine()` function. I passed in the average wind speed in a given state $V_m$, and calculated the potential wind power to be generated from a single turbine exposed to the ambient conditions in that state.
@@ -107,8 +103,11 @@ $$ {#eq-6.31b}
 | $p_{L_a}$     | Array loss                         | 0.2    | @jacobson100CleanRenewable2020a Figure 6.25b    |
 : Values of losses used in calculating turbine power  {#tbl-wind-losses}
 
-To calculate the potential contribution of wind energy to the grid, I followed a similar procedure to what was described in the previous section. I passed in a percentage of land `p_land`, and desired `num_states` into `calc_num_states` to determine how much energy could be produced under reasonable limits of land use. I determined how many wind turbines could be realistically placed on this land using an installed power density of $19.8 \si{W/m^2}$ which was refrenced from Table 6.4 in @jacobson100CleanRenewable2020a. This is a value taken from a study of onshore wind turbines in Europe. 
+To calculate the potential contribution of wind energy to the grid, I followed a similar procedure to what was described in the previous section. I passed in a percentage of land `p_land`, and desired `num_states` into `calc_num_turbines` to determine how much energy could be produced under reasonable limits of land use. I determined how many wind turbines could be realistically placed on this land using an installed power density of $19.8 \si{W/m^2}$ which was refrenced from Table 6.4 in @jacobson100CleanRenewable2020a. This is a value taken from a study of onshore wind turbines in Europe. 
 
-The results of perfoaming these calculations with standard values to descibe the solar panels, and assuming `p_land` = 0.02, and `num_states` = 2, are given in the table below. 
 
-**TODO: calculate spacing and footing**
+## Optimizing the Distribution System 
+
+Once I had developed algorithms for calculating a given number of solar panels and turbines given limits on percentage of land to use and the number of states to place renewable technologies in, I could move forward to develop a theoretically optimal system. Here, I focused on minimizing the number of devices that would be needed for a transition to 100% clean, renewable energy. In **section**, I showed that it would be nessecary to provide **x** MWh of renewable energy, in adition to the **x** MWh of hydropower that already exists on the grid. This would 
+
+
