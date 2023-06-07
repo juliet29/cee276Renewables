@@ -23,38 +23,24 @@ jupyter: python3
 The world urgently needs to transition to 100% clean, renewable energy. This fact is particulary difficult to come to terms with in oil-rich developing countries such as Nigeria. Here, the mining, sale, and use of abundant fossil fuels is expected to pave the way to economic prosperity. However, a cursory glance at the country's history reveals that fossil fuels have certainly not improved socio-economic outcomes to date. Many attribute the rampant inequality and environmental degredation in the oil-rich Niger Delta to the extractive economies that fossil fuels generate. Additionally, Nigeria has the *xth* poorest electricity service on the African continent. Despite being the *9th* largest producer of crude oil in the world, Nigeria is a net importer of energy. A recently opened petroleum refinery, *Dangote oil..* is expected to change this. However, this refinery will process  *x%* of Nigeria's energy demand. Considering that it took *x* years for this refinery to come online, it is doubtful that complete dependence on fossil fuels is the way forward for a population that is expected to *double?* in size over the next *x* years. Rather than simply abandoning its "crown jewel", Nigeria would be making a proactive choice to preserve its natural resources, protect its environment, bolster its economy (*the government spends how much to import refined oil*), and provide clean energy for its people if it chose to transition to 100% clean, renewable energy.
 
 # Energy Consumption in the Status Quo 
-According to *source*, Nigeria consumed x kWh of end-use energy in year. This energy came from the followiing primary sources, and was consumed by the following sectors. Considering that only x% of people have access to grid electricity, we know that demand is much greater than what is currently being consumed. Additionally, we know that generators which run on diesel fuel account for x% of end-use energy demand in the country... The entire electricity generation capacity within Nigeria is .... P This takes into accounts all sectors except for transportation. 
-<!-- - kpmg @2021
-  - power distribution => 4,094 MW
-  - generation capacity => 8000 MW
-- iea @2018 (2019 report ), 
-  - primary energy demand 
-    - bioenegy 114 Mtoe => cooking? 
-    - gas 15 Mtoe # million tons of oil equivalent...
-    - oil 26 Mtoe
-    - 1 mtoe = 11630 kwh 
-  - population 196 M 
-  - acess to electriicty 60%
-- world data info @year? (US office of public affairs)
-  - 24.61 billion kwh/ year  => consumption of energy each year 
-  - production of facilities => 29 bn kwh 
-  - 55% of country access to electricity (2020), [also world bank ](https://data.worldbank.org/indicator/EG.ELC.ACCS.ZS?locations=NG) -->
+According to *source*, Nigeria consumed x kWh of end-use energy in year. This energy came from the followiing primary sources, and was consumed by the following sectors. Considering that only 55% of people have access to grid electricity, we know that demand is much greater than what is currently being consumed. Additionally, we know that generators which run on diesel fuel account for x% of end-use energy demand in the country... The entire electricity generation capacity within Nigeria is .... P This takes into accounts all sectors except for transportation. 
 
 
-##  A Note on Transportation 
-A clean, renewable future in Nigeria would require a re-think of transportation entrirely. Although it has the greatest number of cars on the African continent x, this is still x car/person. Even with this number of cars, the traffic in Nigeria's cities is already a significant barrier to greater economic productivity and individual well-being *(x hours)*. Given the high cost of personal vehicles relative to income, cities in Nigeria should focus on combining efficient, electic public transport and freight with electric last-mile shared vehicles, which may look more along the lines of ke-ke napeps (three-wheeled vehicles) and e-bikes than automobiles. 
+Data on current energy consumption in Nigeria comes from the International Energy Agency. The most recent data available is from 2020. I observed in @fig-sector that the residential sector consumes the greatest amount of energy, at greater that 75 percent @ieaNigeriaCountriesRegions.  The next closest sector is transportation, which is far behind with consumption of around 13 percent. Therefore, I focus the analysis on the residential sector only. 
+
+![Energy Consumption by Sector @ieaNigeriaCountriesRegions](figures/sector_cons.png){#fig-sector}
+
+In the left side of @fig-source, which repesents the breakdown of energy consumption by sector in a Buisness as Usual (BAU) case. If Nigeria were to transition all of its non-electricity sources used in the residential sector to electricity, overall energy demand would reduce significantly. To determine this, I multiplied the energy consumed by source by the percentage of consumption that is attributed to the residential sector. I then multiplied by the appropriate factors given in @jacobson100CleanRenewable2020a Table 7.3. 
+
+
+![Energy Consumption by Source, Business as Usual (BAU) vs Wind Water Solar (WWS) @ieaNigeriaCountriesRegions](figures/source_change.png){#fig-source}
+
 
 {{< include _energy_use.qmd >}}
 
 
+# Further Remarks 
 
+##  A Note on Transportation 
+This study has focued on transitioning the residential sector, since it is the dominant consumer of energy. However, significant consideration should be given to transitioning transportation, the next largest consumer. A clean, renewable future in Nigeria would require a re-think of transportation entrirely. Although it has the greatest number of cars on the African continent x, this is still x car/person. Even with this number of cars, the traffic in Nigeria's cities is already a significant barrier to greater economic productivity and individual well-being *(x hours)*. Given the high cost of personal vehicles relative to income, cities in Nigeria should focus on combining efficient, electic public transport and freight with electric last-mile shared vehicles, which may look more along the lines of ke-ke napeps (three-wheeled vehicles) and e-bikes than automobiles. 
 
-<!-- # Data sources
-* [World Data](https://www.worlddata.info/africa/nigeria/energy-consumption.php)
-* [International Energy Agency](https://www.iea.org/articles/nigeria-energy-outlook)
-  * [iea report on africa 2019](https://iea.blob.core.windows.net/assets/d7f16c12-98c4-4582-bc43-b8f4d933a516/AEO2019_NIGERIA.pdf)
-  * [more updated, and more info => see free extract](https://www.iea.org/data-and-statistics/data-product/world-energy-statistics-and-balances#overview)
-* [University or Abuja](https://iopscience.iop.org/article/10.1088/1755-1315/476/1/012087/pdf)
-* [World Bank Data](https://data.worldbank.org/indicator/EG.USE.ELEC.KH.PC?locations=NG)
-* [EnerData Consultancy](https://www.enerdata.net/estore/country-profiles/nigeria.html)
-* [KPMG](https://kpmg.com/ng/en/home/insights/2022/06/power-sector-updates.html) -->
