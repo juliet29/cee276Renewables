@@ -108,6 +108,10 @@ To calculate the potential contribution of wind energy to the grid, I followed a
 
 ## Optimizing the Distribution System 
 
-Once I had developed algorithms for calculating a given number of solar panels and turbines given limits on percentage of land to use and the number of states to place renewable technologies in, I could move forward to develop a theoretically optimal system. Here, I focused on minimizing the number of devices that would be needed for a transition to 100% clean, renewable energy. In **section**, I showed that it would be nessecary to provide **x** MWh of renewable energy, in adition to the **x** MWh of hydropower that already exists on the grid. This would 
+Once I had developed algorithms for calculating a given number of solar panels and turbines given limits on percentage of land to use and the number of states to place renewable technologies in, I could move forward to develop a theoretically optimal system. In this section, I focus on minimizing the number of devices that would be needed for a transition to 100% clean, renewable energy. In **section**, I showed that it would be nessecary to provide **x** MWh of renewable energy, in adition to the **x** MWh of hydropower that already exists on the grid. This would bring the total amount of energy produced annually to **x** MWh. 
+
+I define a class called `optimize_energy` that executes the functions described in **section**. For solar, it calls `calculate_power_panel` and then `calc_num_panels` to determine the number of panels that would cover a given amount of land in a given number of states, and how much energy they would provide. A similar process is followed for wind. The optimization function minimizes the total number of devices that will need to be placed, with a constraint that the energy produced must be greater than than the energy needed. The only variables I am changing are the percentage of land allocated to each type of device, $pl_{solar}$ and $pl_{wind}$ and the number of states that can have the types of technology, $ns_{solar}$, $ns_{wind}$.
+
+
 
 

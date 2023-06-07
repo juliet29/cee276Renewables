@@ -90,6 +90,7 @@ def calc_num_panels(p_land, num_states, state_areas, P_ac):
         "true_power": true_power.dropna(),
         # "capacity_factors": true_power.dropna()/installed_power.dropna(),
         "total_energy (mwh)": total_energy,
+        "land_avail": land_avail
         
     }
 
@@ -172,5 +173,31 @@ def calc_num_turbines(p_land, num_states, state_areas, P_t_after_losses, P_r):
         "true_power": true_power.dropna(),
         "capacity_factors": true_power.dropna()/installed_power.dropna(),
         "total_energy (mwh)": total_energy,
+        "land_avail": land_avail
         
     }
+
+
+
+    """
+    - wind 
+        - num turbines
+        - installed power 
+        - total energy to produced
+        - number of states 
+        - spacing => land area 
+        - footprint 
+    - solar
+        - num panels 
+        - installed power 
+        - total energy to produced
+        - number of states 
+        - spacing => land area 
+        - footprint 
+    - sum energy 
+    - sum land 
+    - land percent (footprint)
+    
+    
+    
+    """
